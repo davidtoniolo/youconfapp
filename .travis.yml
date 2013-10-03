@@ -1,11 +1,18 @@
 language: java
 jdk: oraclejdk7
 before_install:
+  - export ANDROID_SDKS=android-17,sysimg-17
+  - export ANDROID_TARGET=android-17
+  - export ANDROID_ABI=armeabi-v7a
+  - sudo apt-get update -qq
+  - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq libc6:i386 libgcc1:i386 gcc-4.6-base:i386
   # download the latest android sdk and unzip
-  - wget http://dl.google.com/android/android-sdk_r20-linux.tgz
-  - tar -zxf android-sdk_r20-linux.tgz
-  - export ANDROID_HOME=`pwd`/android-sdk-linux
+  - wget -O android-sdk.tgz http://dl.google.com/android/android-sdk_r22.0.4-linux.tgz
+  - tar xzf android-sdk.tgz
+  - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-  # only update the sdk for the tools and platform-tools (1,2) and whatever api level
-  # you are building for android (run "android list sdk" to get the full list. 9 = 2.3.3 or API level 10
-  - android update sdk --all --no-ui --force
+  - echo y | android update sdk --filter platform-tools,build-tools-18.0.1,android-16,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+before_script:
+  - ./wait_for_emulator
