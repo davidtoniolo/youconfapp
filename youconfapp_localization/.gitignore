@@ -5,3 +5,16 @@
 .project
 .classpath
 .settings
+
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# Local configuration file (sdk path, etc)
+local.properties
