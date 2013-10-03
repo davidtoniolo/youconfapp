@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.unittestcloud</groupId>
+	<artifactId>youconfapp</artifactId>
+	<name>youconfapp</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<android.sdk.version>4.0.1.2</android.sdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<ciManagement>
+
+	</ciManagement>
+	<scm>
+		<connection>scm:git:https://github.com/davidtoniolo/youconfapp.git</connection>
+		<developerConnection>scm:git:https://github.com/davidtoniolo/youconfapp.git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/davidtoniolo/youconfapp</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>davidtoniolo</id>
+			<name>David Toniolo</name>
+			<email>davidtoniolo@gmx.de</email>
+			<url>www.unittestcloud.com</url>
+			<organization>www.unittestcloud.com</organization>
+			<organizationUrl>www.unittestcloud.com</organizationUrl>
+			<roles>
+				<role>project creator</role>
+			</roles>
+			<timezone>+2</timezone>
+			<properties>
+				
+			</properties>
+		</developer>
+	</developers>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.5.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<sourceEncoding>UTF-8</sourceEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.10</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<distributionManagement>
+
+	</distributionManagement>
+
+	<repositories>
+
+	</repositories>
+
+	<pluginRepositories>
+
+	</pluginRepositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>${android.sdk.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.akquinet.android.androlog</groupId>
+			<artifactId>androlog</artifactId>
+			<version>1.0.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.robolectric</groupId>
+			<artifactId>robolectric</artifactId>
+			<version>2.1.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<modules>
+		<module>youconfapp_localization</module>
+    <module>youconfapp_app</module>
+  </modules>
+</project>
