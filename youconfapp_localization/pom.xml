@@ -17,14 +17,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<build>
+		<plugins>
+           <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+            </plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-					<artifactId>android-maven-plugin</artifactId>
-					<version>3.1.1</version>
-					<extensions>true</extensions>
-				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -35,11 +35,19 @@
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-										<artifactId>android-maven-plugin</artifactId>
-										<versionRange>[3.1.1,)</versionRange>
+										<groupId>
+											com.jayway.maven.plugins.android.generation2
+										</groupId>
+										<artifactId>
+											android-maven-plugin
+										</artifactId>
+										<versionRange>
+											[3.6.0,)
+										</versionRange>
 										<goals>
-											<goal>generate-sources</goal>
+											<goal>
+												generate-sources
+											</goal>
 											<goal>proguard</goal>
 										</goals>
 									</pluginExecutionFilter>
@@ -53,11 +61,5 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<plugins>
-           <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-            </plugin>
-		</plugins>
 	</build>
 </project>
