@@ -112,7 +112,7 @@
 					<configuration>
 						<sdk>
 							<!-- platform or api level (api level 17 = platform 4.1.1.4) -->
-							<platform>17</platform>
+							<platform>16</platform>
 						</sdk>
 					</configuration>
 
