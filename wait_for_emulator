@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#
+# This script is copied from
+# https://github.com/embarkmobile/android-maven-example
+# Use it in .travis.yml when testing with Robotium a
+# framework which requires virtual devices to run tests.
+#
+
 bootanim=""
 failcounter=0
 until [[ "$bootanim" =~ "stopped" ]]; do

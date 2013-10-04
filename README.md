@@ -1,7 +1,7 @@
 youconfapp
 ==========
 
-Travis CI build status: [![Build Status](https://travis-ci.org/davidtoniolo/youconfapp.png?branch=master)](https://travis-ci.org/davidtoniolo/youconfapp)
+Travis CI build status (latest): [![Build Status](https://travis-ci.org/davidtoniolo/youconfapp.png?branch=master)](https://travis-ci.org/davidtoniolo/youconfapp)
 
 Author: David Toniolo <davidtoniolo@gmx.de>
 

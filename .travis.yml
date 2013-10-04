@@ -32,11 +32,13 @@ before_install:
   - ls $ANDROID_HOME/platform-tools
   - ls $ANDROID_HOME/build-tools/18.1.0
 
-  # Create and start emulator
+  # Create and start emulator - only needed when testing with Robotium
   # echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   # emulator -avd test -no-skin -no-audio -no-window &
 
 before_script:
+  # only needed when testing with Robotium
   # ./wait_for_emulator
 
+# only needed when testing with Robotium
 # script: mvn install -Pintegration-tests -Dandroid.device=test
