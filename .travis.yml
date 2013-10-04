@@ -32,6 +32,6 @@ before_install:
   # emulator -avd test -no-skin -no-audio -no-window &
 
 before_script:
-  - ./wait_for_emulator
+  # ./wait_for_emulator
 
 script: mvn install -Pintegration-tests -Dandroid.device=test
