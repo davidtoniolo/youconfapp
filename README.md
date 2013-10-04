@@ -25,8 +25,25 @@ Just a kind of resource storage module for localization of strings, drawables, e
 Testing & Continuous Integration
 ================================
 
-[TestNG](https://github.com/cbeust/testng/) is used for unit testing.
-
-[Robolectric](https://github.com/robolectric/robolectric) is used for integration testing.
+[JUnit](http://junit.org) & [Robolectric](https://github.com/robolectric/robolectric) is used for unit/integration testing.
 
 [Travis CI](https://travis-ci.org/davidtoniolo/youconfapp) is watching youconf!app.
+
+Run unit tests:
+
+	mvn test
+	
+Run integration tests & unit tests:
+
+	mvn integration-test
+
+Install, deploy & run
+=====================
+
+Build youconfapp (parent module):
+
+	mvn install
+
+Deploy and run youconfapp_app (app submodule):
+
+	mvn android:deploy android:run
