@@ -4,6 +4,10 @@
     android:versionCode="1"
     android:versionName="0.0.1-SNAPSHOT" >
 
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="16" />
+    
     <application>
         
     </application>
