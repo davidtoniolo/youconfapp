@@ -2,10 +2,9 @@ language: java
 jdk: oraclejdk7
 env:
   matrix:
-    # android-16 is always included
     - ANDROID_SDKS=android-8 ANDROID_TARGET=android-8 ANDROID_ABI=armeabi
     - ANDROID_SDKS=android-10 ANDROID_TARGET=android-10 ANDROID_ABI=armeabi
-    - ANDROID_SDKS=sysimg-16 ANDROID_TARGET=android-16 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-16 ANDROID_TARGET=android-16 ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a
 before_install:
   # Install base Android SDK
@@ -25,8 +24,9 @@ before_install:
   # Note that `echo y` only accepts the first license. This is actually convenient, since
   # it prevents the installation of the ATOM and MIPS emulator images. It might cause
   # issues in the future though.
-  - echo y | android update sdk --filter 2,3,android-16,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
+  - echo y | android update sdk --filter 2,3,android-17,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
 
+  # Print info
   - echo $ANDROID_HOME
   - ls $ANDROID_HOME/tools
   - ls $ANDROID_HOME/platform-tools
