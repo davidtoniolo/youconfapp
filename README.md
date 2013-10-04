@@ -3,7 +3,7 @@ youconfapp
 
 Travis CI build status (latest): [![Build Status](https://travis-ci.org/davidtoniolo/youconfapp.png?branch=master)](https://travis-ci.org/davidtoniolo/youconfapp)
 
-Author: David Toniolo <davidtoniolo@gmx.de>
+Author: David Toniolo <youconfapp@unittestcloud.com>
 
 
 youconfapp_app
@@ -18,3 +18,9 @@ youconfapp_localization
 An Android Library Project as Maven submodule.
 
 Includes resources for localization like strings and drawables.
+
+
+Testing
+=======
+
+[Robolectric](https://github.com/robolectric/robolectric) is used for integration testing.
