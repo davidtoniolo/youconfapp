@@ -55,6 +55,7 @@
 										<goals>
 											<goal>generate-sources</goal>
 											<goal>proguard</goal>
+											<goal>manifest-update</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
@@ -68,22 +69,26 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<plugin>
-				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-				<artifactId>android-maven-plugin</artifactId>
-				<version>3.1.1</version>
-				<configuration>
-					<androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
-					<assetsDirectory>${project.basedir}/assets</assetsDirectory>
-					<resourceDirectory>${project.basedir}/res</resourceDirectory>
-					<nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
-					<sdk>
-						<platform>17</platform>
-					</sdk>
-					<undeployBeforeDeploy>true</undeployBeforeDeploy>
-				</configuration>
-				<extensions>true</extensions>
-			</plugin>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <configuration>
+                    <manifest>
+                        <versionName />
+                        <versionCodeUpdateFromVersion>true</versionCodeUpdateFromVersion>
+                    </manifest>
+                    <mergeManifests>true</mergeManifests>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>update-manifest</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>manifest-update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
