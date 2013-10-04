@@ -42,3 +42,5 @@ before_script:
 
 # only needed when testing with Robotium
 # script: mvn install -Pintegration-tests -Dandroid.device=test
+
+script: mvn integration-test

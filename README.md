@@ -25,9 +25,15 @@ Just a kind of resource storage module for localization of strings, drawables, e
 Testing & Continuous Integration
 ================================
 
+[Travis CI](https://travis-ci.org/davidtoniolo/youconfapp) is watching youconf!app.
+
 [JUnit](http://junit.org) & [Robolectric](https://github.com/robolectric/robolectric) is used for unit/integration testing.
 
-[Travis CI](https://travis-ci.org/davidtoniolo/youconfapp) is watching youconf!app.
+youconf!app separates unit tests from integration tests with the 2 Maven plugins:
+
+* [maven-surefire-plugin](http://maven.apache.org/surefire/maven-surefire-plugin)
+* [build-helper-maven-plugin](http://mojo.codehaus.org/build-helper-maven-plugin)
+
 
 Run unit tests:
 
