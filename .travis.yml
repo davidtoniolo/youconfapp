@@ -27,6 +27,10 @@ before_install:
   # issues in the future though.
   - echo y | android update sdk --filter 2,3,android-16,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
 
+  - echo $ANDROID_HOME
+  - ls $ANDROID_HOME/platform-tools
+  - ls $ANDROID_HOME/build-tools
+
   # Create and start emulator
   # echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   # emulator -avd test -no-skin -no-audio -no-window &
@@ -34,4 +38,4 @@ before_install:
 before_script:
   # ./wait_for_emulator
 
-script: mvn install -Pintegration-tests -Dandroid.device=test
+# script: mvn install -Pintegration-tests -Dandroid.device=test
