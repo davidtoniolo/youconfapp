@@ -29,7 +29,7 @@ before_install:
 
   - echo $ANDROID_HOME
   - ls $ANDROID_HOME/platform-tools
-  - ls $ANDROID_HOME/build-tools
+  - ls $ANDROID_HOME/build-tools/18.1.0
 
   # Create and start emulator
   # echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
