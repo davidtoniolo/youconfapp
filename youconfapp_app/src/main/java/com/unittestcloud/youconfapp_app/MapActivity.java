@@ -2,6 +2,9 @@ package com.unittestcloud.youconfapp_app;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+
+import com.unittestcloud.R;
+
 import de.akquinet.android.androlog.Log;
 
 /**
@@ -20,7 +23,7 @@ public class MapActivity extends FragmentActivity {
 
 		Log.init(this);
 
-	    //setContentView(R.layout.map);
+		setContentView(R.layout.map);
 	}
 
 }

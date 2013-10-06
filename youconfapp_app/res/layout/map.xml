@@ -9,6 +9,7 @@
         android:id="@+id/map_map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.google.android.gms.maps.MapFragment" />
+        android:name="com.unittestcloud.youconf_app.MapActivity"
+        class="com.unittestcloud.youconfapp_app.fragment.MapFragment" />
 
 </RelativeLayout>

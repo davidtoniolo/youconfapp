@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="0.0.1-SNAPSHOT" package="com.unittestcloud">
 
-    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="16"/>
+    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="17"/>
 
     <permission android:name="com.unittestcloud.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
 
