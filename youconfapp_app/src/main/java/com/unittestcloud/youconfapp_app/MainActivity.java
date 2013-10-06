@@ -1,9 +1,10 @@
 package com.unittestcloud.youconfapp_app;
 
-import com.unittestcloud.R;
-
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.unittestcloud.R;
+
 import de.akquinet.android.androlog.Log;
 
 /**

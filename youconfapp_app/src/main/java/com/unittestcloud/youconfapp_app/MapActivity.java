@@ -1,27 +1,26 @@
 package com.unittestcloud.youconfapp_app;
 
-import com.unittestcloud.R;
-
-import de.akquinet.android.androlog.Log;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import de.akquinet.android.androlog.Log;
 
 /**
  * 
  * @author davidtoniolo
- *
+ * 
  */
-public class MapActivity extends Activity {
-	
+public class MapActivity extends FragmentActivity {
+
 	@SuppressWarnings("unused")
 	private static final String TAG = "youconfapp_app.MapActivity";
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		Log.init(this);
-		
-		setContentView(R.layout.map);
+
+	    //setContentView(R.layout.map);
 	}
+
 }

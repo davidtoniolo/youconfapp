@@ -27,6 +27,12 @@
 			<type>apklib</type>
 		</dependency>
 
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>support-v4</artifactId>
+			<version>r7</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -90,26 +96,26 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-            <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <configuration>
-                    <manifest>
-                        <versionName />
-                        <versionCodeUpdateFromVersion>true</versionCodeUpdateFromVersion>
-                    </manifest>
-                    <mergeManifests>true</mergeManifests>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>update-manifest</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>manifest-update</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+				<configuration>
+					<manifest>
+						<versionName />
+						<versionCodeUpdateFromVersion>true</versionCodeUpdateFromVersion>
+					</manifest>
+					<mergeManifests>true</mergeManifests>
+				</configuration>
+				<executions>
+					<execution>
+						<id>update-manifest</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>manifest-update</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
