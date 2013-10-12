@@ -37,6 +37,9 @@ before_install:
   # emulator -avd test -no-skin -no-audio -no-window &
 
 before_script:
+  # Install google-play-services JAR in local repository.
+  mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services-jar -Dversion=7 -Dpackaging=jar -Dfile=google_play_services_lib/libs/google-play-services.jar
+  
   # only needed when testing with Robotium
   # ./wait_for_emulator
 
