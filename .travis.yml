@@ -36,10 +36,12 @@ before_install:
   # echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   # emulator -avd test -no-skin -no-audio -no-window &
 
-install:
+  # Integrate Google Play Services dependencies.
+  - git clone https://github.com/mosabua/maven-android-sdk-deployer.git
   - ls .
-  # Install google-play-services JAR in local repository.
-  - mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services-jar -Dversion=7 -Dpackaging=jar -Dfile=google_play_services_lib/libs/google-play-services.jar
+  - cd maven-android-sdk-deployer/extras/google-play-services
+  - mvn install
+  - cd ../compatibility-v4
   - mvn install
 
 before_script:
@@ -50,7 +52,4 @@ before_script:
 # script: mvn install -Pintegration-tests -Dandroid.device=test
 
 script:
-  - ls .
-  # Install google-play-services JAR in local repository.
-  - mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services-jar -Dversion=7 -Dpackaging=jar -Dfile=google_play_services_lib/libs/google-play-services.jar
   - mvn integration-test
