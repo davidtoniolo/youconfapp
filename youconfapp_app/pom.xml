@@ -33,11 +33,18 @@
 			<version>r7</version>
 		</dependency>
 
+		<!-- This is for the Android XML resources -->
 		<dependency>
 			<groupId>com.google.android.gms</groupId>
 			<artifactId>google-play-services</artifactId>
 			<version>7</version>
 			<type>apklib</type>
+		</dependency>
+		<!-- This is for the Google API classes -->
+		<dependency>
+			<groupId>com.google.android.gms</groupId>
+			<artifactId>google-play-services</artifactId>
+			<version>7</version>
 		</dependency>
 
 	</dependencies>
