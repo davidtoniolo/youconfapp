@@ -45,10 +45,12 @@ Prepare google_play_services_lib:
 
 Build youconfapp (parent module):
 
+	cd <your-local-path>/youconfapp
 	mvn install
 
 Deploy and run youconfapp_app (app submodule):
 
+	cd <your-local-path>/youconfapp/youconfapp_app
 	mvn android:deploy android:run
 
 
@@ -67,10 +69,12 @@ youconf!app separates unit tests from integration tests with the 2 Maven plugins
 
 Run unit tests:
 
+	cd <your-local-path>/youconfapp
 	mvn test
 	
 Run integration tests & unit tests:
 
+	cd <your-local-path>/youconfapp
 	mvn integration-test
 
 	
