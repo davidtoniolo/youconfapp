@@ -30,6 +30,7 @@ before_install:
   - git clone git://github.com/mosabua/maven-android-sdk-deployer.git
   - cd $PWD/maven-android-sdk-deployer/extras/google-play-services
   - mvn install -N --quiet
+  - echo $PWD
   - cd $PWD
   - ls .
 
@@ -45,6 +46,7 @@ before_install:
 
 install:
 
+  - echo $PWD
   - ls .
   - mvn install
 
