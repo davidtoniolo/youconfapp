@@ -34,7 +34,7 @@ Prepare, install, deploy & run
 ==============================
 
 youconf!app comes with the original Google Play Service Library as submodule google_play_services_lib, which is
-a regular APKLib project. You need to import this APKLib project in your IDE as an single project and you have to import
+a regular APKLib project. You need to import this APKLib project in your IDE as a single project and you have to import
 the JAR file into your local Maven repository before you run mvn install.
 It is just the same procedure which you would have to do, if you are using your local google-play-services_lib project.
 
