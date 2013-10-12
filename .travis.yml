@@ -7,10 +7,6 @@ env:
     - ANDROID_SDKS=android-16 ANDROID_TARGET=android-16 ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a
 before_install:
-  - ls .
-  # Install google-play-services JAR in local repository.
-  - mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services-jar -Dversion=7 -Dpackaging=jar -Dfile=google_play_services_lib/libs/google-play-services.jar
-  
   # Install base Android SDK
   - sudo apt-get update -qq
   - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq libstdc++6:i386 lib32z1; fi
@@ -40,7 +36,11 @@ before_install:
   # echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   # emulator -avd test -no-skin -no-audio -no-window &
 
-before_script:  
+before_script:
+  - ls .
+  # Install google-play-services JAR in local repository.
+  - mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services-jar -Dversion=7 -Dpackaging=jar -Dfile=google_play_services_lib/libs/google-play-services.jar
+    
   # only needed when testing with Robotium
   # ./wait_for_emulator
 
