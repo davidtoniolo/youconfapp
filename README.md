@@ -8,6 +8,14 @@ Travis CI build status (latest): [![Build Status](https://travis-ci.org/davidton
 Author: David Toniolo <youconfapp@unittestcloud.com>
 
 
+google_play_services_lib
+========================
+
+This is the official Google Play Services Library.
+
+It is integrated to use GoogleMaps API v2 for Android. The pom.xml is not part of the original project.
+
+
 youconfapp_app
 ==============
 
@@ -45,6 +53,11 @@ Run integration tests & unit tests:
 
 Install, deploy & run
 =====================
+
+youconf!app comes with the original Google Play Service Library as submodule google_play_services_lib, which is
+a regular APKLib project. You need to import this APKLib project in your IDE as an single project, if you want
+to run mvn install.
+It is just the same process which you would have to do, if you are using your local google-play-services_lib project.
 
 Build youconfapp (parent module):
 
