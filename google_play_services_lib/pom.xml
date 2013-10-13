@@ -5,7 +5,8 @@
 	<groupId>com.google.android.gms</groupId>
 	<artifactId>google-play-services</artifactId>
 	<name>google_play_services_lib</name>
-	<version>7</version>
+	<!-- set version of your google play services apklib project -->
+	<version>3.2.65</version>
 
 	<packaging>apklib</packaging>
 
