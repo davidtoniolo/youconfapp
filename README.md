@@ -41,7 +41,7 @@ It is just the same procedure which you would have to do, if you are using your 
 Prepare google_play_services_lib:
 
 	cd <your-local-path>/youconfapp/google_play_services_lib
-	mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services-jar -Dversion=7 -Dpackaging=jar -Dfile=libs/google-play-services.jar
+	mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services -Dversion=7 -Dpackaging=jar -Dfile=libs/google-play-services.jar
 
 Build youconfapp (parent module):
 
