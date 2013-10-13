@@ -2,7 +2,7 @@ youconfapp
 ==========
 
 The Maven parent module. youconf!app is a hierarchical multi-module Maven project and comes with the 
-(Google Play Services Client Library)[http://developer.android.com/google/play-services/index.html] included.
+[Google Play Services Client Library](http://developer.android.com/google/play-services/index.html) included.
 
 Travis CI build status (latest): [![Build Status](https://travis-ci.org/davidtoniolo/youconfapp.png?branch=master)](https://travis-ci.org/davidtoniolo/youconfapp)
 
@@ -38,9 +38,9 @@ Prepare, install, deploy & run
 youconf!app comes with the original Google Play Service Library as submodule google_play_services_lib, which is
 a regular APKLib project. You need to import this APKLib project in your IDE as a single project and you have to import
 the JAR file into your local Maven repository before you run mvn install.
-It is just the same procedure which you would have to do, if you are using your local google-play-services_lib project,
 
-see official documentation to setup Google Play Service Library: http://developer.android.com/google/play-services/setup.html
+It is just the same procedure which you would have to do, if you are using your local google-play-services_lib project,
+see official documentation to [setup Google Play Service Library](http://developer.android.com/google/play-services/setup.html).
 
 Prepare google_play_services_lib:
 
