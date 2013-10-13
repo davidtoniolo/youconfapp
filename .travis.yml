@@ -25,8 +25,9 @@ before_install:
   # issues in the future though.
   - echo y | android update sdk --filter 2,3,android-17,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
 
-  # Add google play services
-  - mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services -Dversion=7 -Dpackaging=jar -Dfile=google_play_services_lib/libs/google-play-services.jar
+  # Add google play services JAR to the local Maven repository.
+  # NOTE: Please see README for the required version number to add as argument -Dversion=X.X.X
+  - mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services -Dversion=3.2.65 -Dpackaging=jar -Dfile=google_play_services_lib/libs/google-play-services.jar
 
   # Print info
   # - echo $ANDROID_HOME

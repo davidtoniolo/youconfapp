@@ -1,7 +1,8 @@
 youconfapp
 ==========
 
-The Maven parent module. youconf!app is a hierarchical multi-module Maven project and comes with the Google Play Services Library included.
+The Maven parent module. youconf!app is a hierarchical multi-module Maven project and comes with the 
+(Google Play Services Client Library)[http://developer.android.com/google/play-services/index.html] included.
 
 Travis CI build status (latest): [![Build Status](https://travis-ci.org/davidtoniolo/youconfapp.png?branch=master)](https://travis-ci.org/davidtoniolo/youconfapp)
 
@@ -13,7 +14,8 @@ Author: David Toniolo <youconfapp@unittestcloud.com>
 
 This is the official Google Play Services Library.
 
-It is integrated to use GoogleMaps API v2 for Android. The pom.xml is not part of the original project.
+It is integrated to use [GoogleMaps Android API v2](https://developers.google.com/maps/documentation/android).
+The pom.xml is just added to build it with Maven, it is not part of the offical sources.
 
 
 /youconfapp_app
