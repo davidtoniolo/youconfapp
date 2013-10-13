@@ -20,38 +20,30 @@ before_install:
 
   # Install required components.
   # For a full list, run `android list sdk -a --extended`
-  # Note that sysimg-16 downloads the ARM, x86 and MIPS images (we should optimize this).
   # Note that `echo y` only accepts the first license. This is actually convenient, since
   # it prevents the installation of the ATOM and MIPS emulator images. It might cause
   # issues in the future though.
-  - echo y | android update sdk --filter 2,3,android-17,extra-android-support,extra-google-google_play_services,$ANDROID_SDKS --no-ui --force > /dev/null
+  - echo y | android update sdk --filter 2,3,android-17,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
 
   # Add google play services
   - mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services -Dversion=7 -Dpackaging=jar -Dfile=google_play_services_lib/libs/google-play-services.jar
 
   # Print info
-  - echo $ANDROID_HOME
-  - ls $ANDROID_HOME/tools
-  - ls $ANDROID_HOME/platform-tools
-  - ls $ANDROID_HOME/build-tools/18.1.0
+  # - echo $ANDROID_HOME
+  # - ls $ANDROID_HOME/tools
+  # - ls $ANDROID_HOME/platform-tools
+  # - ls $ANDROID_HOME/build-tools/18.1.0
 
   # Create and start emulator - only needed when testing with Robotium
-  # echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  # emulator -avd test -no-skin -no-audio -no-window &
-
-install:
-  - echo $PWD
-  - ls .
-  - mvn install
+  # - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  # - emulator -avd test -no-skin -no-audio -no-window &
 
 before_script:
   # only needed when testing with Robotium
-  # ./wait_for_emulator
+  # - ./wait_for_emulator
 
 # only needed when testing with Robotium
 # script: mvn install -Pintegration-tests -Dandroid.device=test
 
 script:
-  - echo $PWD
-  - ls .
   - mvn integration-test
