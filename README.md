@@ -32,6 +32,14 @@ An Android Library Project as a Maven submodule.
 Just a kind of resource storage module for localization of strings, drawables, etc.
 
 
+/youconfapp_utils
+=================
+
+An Android Library Project as a Maven submodule.
+
+API of helper classes like factories, converters, etc.
+
+
 Prepare, install, deploy & run
 ==============================
 
