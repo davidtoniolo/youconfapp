@@ -248,8 +248,9 @@
 	</profiles>
 
 	<modules>
+	    <module>google_play_services_lib</module>
+	    <module>youconfapp_app</module>
 		<module>youconfapp_localization</module>
-		<module>youconfapp_app</module>
-		<module>google_play_services_lib</module>
+		<module>youconfapp_utils</module>
 	</modules>
 </project>
