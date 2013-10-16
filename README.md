@@ -55,7 +55,12 @@ Prepare google_play_services_lib:
 	cd <your-local-path>/youconfapp/google_play_services_lib
 	mvn org.apache.maven.plugins:maven-install-plugin:2.4:install-file -DgroupId=com.google.android.gms -DartifactId=google-play-services -Dversion=3.2.65 -Dpackaging=jar -Dfile=libs/google-play-services.jar
 
-Note: You can use your local Google Play Services Lib, e.g. if you need to use another version.
+WARNING
+ 
+You should use your local Google Play Services Library project, because this one is primarly shipped for Travis CI Build Platform.
+
+To use your local google-play-services_lilb project add it as Android Lib project to the youconfapp_app project.
+
 
 Build youconfapp (parent module):
 
@@ -85,7 +90,7 @@ Run unit tests:
 
 	cd <your-local-path>/youconfapp
 	mvn test
-	
+
 Run integration tests & unit tests:
 
 	cd <your-local-path>/youconfapp

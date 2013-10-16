@@ -33,9 +33,9 @@ public class MapActivity extends Activity {
 
 		setContentView(R.layout.gmaps);
 
-		map = ((MapFragment) getFragmentManager().findFragmentById(
-				R.id.gmaps_map)).getMap();
-
+		MapFragment fragment = (MapFragment) getFragmentManager().findFragmentById(R.id.gmaps_map);
+		
+		map = fragment.getMap();
 		map.setMyLocationEnabled(true);
 
 		MapCallback mapCallback = new MapCallback(getApplicationContext(), map);
