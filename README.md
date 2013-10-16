@@ -59,7 +59,7 @@ WARNING
  
 You should use your local Google Play Services Library project, because this one is primarly shipped for Travis CI Build Platform.
 
-To use your local google-play-services_lilb project add it as Android Lib project to the youconfapp_app project.
+To use your local google-play-services_lib project add it as Android Lib project to the youconfapp_app project.
 
 
 Build youconfapp (parent module):
@@ -96,4 +96,14 @@ Run integration tests & unit tests:
 	cd <your-local-path>/youconfapp
 	mvn integration-test
 
-	
+
+Troubleshooting
+===============
+
+1. GoogleMaps doesn't load
+
+Usage of GoogleMaps requires a Google Developer Account with enabled Android GoogleMaps API v2. In the Google Developer console a API key
+has to be created and the keystore + package name of each app must be added there. So, if you have built the youconfapp_app you did not use
+a keystore which is added to the configured API key configured in the AndroidManifest.xml, because you can't have such a keystore.
+
+So the MapActivity which uses the GoogleMaps can't display the map until you changed these settings.
