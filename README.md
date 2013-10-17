@@ -78,7 +78,7 @@ Testing & Continuous Integration
 
 [Travis CI](https://travis-ci.org/davidtoniolo/youconfapp) is watching youconf!app.
 
-[JUnit](http://junit.org) & [Robolectric](https://github.com/robolectric/robolectric) is used for unit/integration testing.
+[JUnit](http://junit.org), [mockito](https://code.google.com/p/mockito) & [Robolectric](https://github.com/robolectric/robolectric) is used for unit/integration testing.
 
 youconf!app separates unit tests from integration tests with the 2 Maven plugins:
 
