@@ -2,5 +2,9 @@
 <resources>
 
     <string name="yourPositionMarkerTitle">You are here</string>
+    
+    <!-- MapActivity -->
+    <string name="titleOnClickMapActivityDialogAlert">Sorry - you need a network connection to see the map. You will get back to home screen.</string>
+    <string name="negativeOnClickMapActivityDialogAlert">OK</string>
 
 </resources>

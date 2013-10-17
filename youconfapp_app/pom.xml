@@ -26,6 +26,14 @@
 			<scope>compile</scope>
 			<type>apklib</type>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.unittestcloud</groupId>
+			<artifactId>youconfapp_utils</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+			<type>apklib</type>
+		</dependency>
 
 		<dependency>
 			<groupId>com.google.android</groupId>
