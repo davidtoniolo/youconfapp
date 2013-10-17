@@ -44,6 +44,7 @@ public class MapActivity extends Activity {
 
 		if (false == NetUtils.isNetworkAvailable(cm)) {
 			showDialog(DIALOG_ALERT_NETWORK_MISSING);
+			// User will get redirected to home screen.
 		}
 
 		setContentView(R.layout.gmaps);
