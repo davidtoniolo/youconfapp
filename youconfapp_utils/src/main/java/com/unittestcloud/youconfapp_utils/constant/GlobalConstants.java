@@ -6,8 +6,17 @@ package com.unittestcloud.youconfapp_utils.constant;
  * @author davidtoniolo
  *
  */
-final public class GlobalConstants {
-
-	public static final int MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER = 50;
+public enum GlobalConstants {
 	
+	MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER ( 50 );
+	
+	private int intValue;
+	
+	private GlobalConstants(int val) {
+		intValue = val;
+	}
+	
+	public int getInt() {
+		return intValue;
+	}
 }

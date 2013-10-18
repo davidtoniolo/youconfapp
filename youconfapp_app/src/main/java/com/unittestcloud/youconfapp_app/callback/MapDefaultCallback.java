@@ -106,7 +106,7 @@ public class MapDefaultCallback implements
 					 */
 					private boolean updateMapWhenPositionChangedAtAMinimum(
 							float distance) {
-						if (GlobalConstants.MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER < distance) {
+						if (distance > GlobalConstants.MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER.getInt()) {
 							return true;
 						}
 						return false;
