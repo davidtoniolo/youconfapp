@@ -12,11 +12,10 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.unittestcloud.R;
-import com.unittestcloud.youconfapp_app.callback.MapCallback;
+import com.unittestcloud.youconfapp_app.callback.MapDefaultCallback;
 import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
 import com.unittestcloud.youconfapp_utils.map.Map;
-import com.unittestcloud.youconfapp_utils.map.MarkerOptionsFactory;
 import com.unittestcloud.youconfapp_utils.network.NetUtils;
 
 import de.akquinet.android.androlog.Log;
@@ -56,7 +55,7 @@ public class MapActivity extends Activity {
 			
 			Map.initDefaultMap(map);
 			
-			MapCallback mapCallback = new MapCallback(getApplicationContext(),
+			MapDefaultCallback mapCallback = new MapDefaultCallback(getApplicationContext(),
 					map);
 			
 			locationClient = new LocationClient(this, mapCallback,

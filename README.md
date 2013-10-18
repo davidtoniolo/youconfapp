@@ -107,3 +107,5 @@ has to be created and the fingerprint-keystore + package name of each app must b
 did not use a keystore which is added to the API key configured in the AndroidManifest.xml, because you can't have such a keystore.
 
 So the MapActivity which uses the GoogleMaps can't display the map until you changed these settings in your own Google Developer console.
+
+A great tutorial is here: http://www.vogella.com/articles/AndroidGoogleMaps/article.html#maps_key

@@ -13,13 +13,15 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.unittestcloud.youconfapp_localization.R;
+import com.unittestcloud.youconfapp_utils.constant.GlobalConstants;
 
 /**
+ * Default callback for google maps.
  * 
  * @author davidtoniolo
  * 
  */
-public class MapCallback implements
+public class MapDefaultCallback implements
 		GooglePlayServicesClient.ConnectionCallbacks {
 
 	private GoogleMap map;
@@ -31,7 +33,7 @@ public class MapCallback implements
 	 * @param context
 	 * @param map
 	 */
-	public MapCallback(Context context, GoogleMap map) {
+	public MapDefaultCallback(Context context, GoogleMap map) {
 		this.context = context;
 		this.map = map;
 	}
@@ -59,24 +61,55 @@ public class MapCallback implements
 
 					@Override
 					public void onLocationChanged(final Location location) {
-						currentLocation = location;
+						float[] results = { 0f };
 
-						map.addMarker(new MarkerOptions()
-								.position(
-										new LatLng(currentLocation
-												.getLatitude(), currentLocation
-												.getLongitude()))
-								.title(context
-										.getString(R.string.yourPositionMarkerTitle))
-								.icon(BitmapDescriptorFactory
-										.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+						if (null != currentLocation) {
+							Location.distanceBetween(
+									currentLocation.getLatitude(),
+									currentLocation.getLongitude(),
+									location.getLatitude(),
+									location.getLongitude(), results);
+						}
 
-						/*
-						 * Center position in google maps.
-						 */
-						map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-								new LatLng(currentLocation.getLatitude(),
-										currentLocation.getLongitude()), 15.0f));
+						if (null == currentLocation
+								|| updateMapWhenPositionChangedAtAMinimum(results[0])) {
+							currentLocation = location;
+
+							map.addMarker(new MarkerOptions()
+									.position(
+											new LatLng(currentLocation
+													.getLatitude(),
+													currentLocation
+															.getLongitude()))
+									.title(context
+											.getString(R.string.yourPositionMarkerTitle))
+									.icon(BitmapDescriptorFactory
+											.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+							/*
+							 * Center position in google maps.
+							 */
+							map.animateCamera(CameraUpdateFactory
+									.newLatLngZoom(
+											new LatLng(currentLocation
+													.getLatitude(),
+													currentLocation
+															.getLongitude()),
+											15.0f));
+						}
+					}
+
+					/**
+					 * @param distance
+					 *            in meters
+					 * @return
+					 */
+					private boolean updateMapWhenPositionChangedAtAMinimum(
+							float distance) {
+						if (GlobalConstants.MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER < distance) {
+							return true;
+						}
+						return false;
 					}
 				});
 	}
