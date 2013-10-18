@@ -102,8 +102,8 @@ Troubleshooting
 
 1. GoogleMaps doesn't load
 
-Usage of GoogleMaps requires a Google Developer Account with enabled Android GoogleMaps API v2. In the Google Developer console a API key
-has to be created and the keystore + package name of each app must be added there. So, if you have built the youconfapp_app you did not use
-a keystore which is added to the configured API key configured in the AndroidManifest.xml, because you can't have such a keystore.
+Usage of GoogleMaps requires a Google Developer Account with enabled Android GoogleMaps API v2. In the Google Developer console an API key
+has to be created and the fingerprint-keystore + package name of each app must be added there. So, if you have built the youconfapp_app you 
+did not use a keystore which is added to the API key configured in the AndroidManifest.xml, because you can't have such a keystore.
 
-So the MapActivity which uses the GoogleMaps can't display the map until you changed these settings.
+So the MapActivity which uses the GoogleMaps can't display the map until you changed these settings in your own Google Developer console.
