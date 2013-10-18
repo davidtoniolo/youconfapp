@@ -6,6 +6,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
+ * Helper class for GoogleMaps.
  * 
  * @author davidtoniolo
  * 
@@ -18,11 +19,12 @@ public class Map {
 	 * @param map
 	 */
 	public static void initDefaultMap(GoogleMap map) {
-		map.setMyLocationEnabled(true);
+		if (null != map) {
+			map.setMyLocationEnabled(true);
 
-		Map.addMarkers(
-				MarkerOptionsFactory.createDefaultDestinationMarkerOptions(),
-				map);
+			Map.addMarkers(MarkerOptionsFactory
+					.createDefaultDestinationMarkerOptions(), map);
+		}
 	}
 
 	/**
@@ -31,8 +33,10 @@ public class Map {
 	 * @param map
 	 */
 	public static void addMarkers(List<MarkerOptions> options, GoogleMap map) {
-		for (MarkerOptions option : options) {
-			map.addMarker(option);
+		if (null != options) {
+			for (MarkerOptions option : options) {
+				map.addMarker(option);
+			}
 		}
 	}
 }

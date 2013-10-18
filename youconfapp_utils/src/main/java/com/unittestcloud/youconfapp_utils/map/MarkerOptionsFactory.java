@@ -16,6 +16,7 @@ public class MarkerOptionsFactory {
 	static final LatLng KIEL = new LatLng(53.551, 9.993);
 
 	/**
+	 * Build an array list of MarkerOptions objects.
 	 * 
 	 * @return
 	 */
