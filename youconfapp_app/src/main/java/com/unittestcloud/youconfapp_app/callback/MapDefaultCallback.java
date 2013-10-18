@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.unittestcloud.youconfapp_localization.R;
-import com.unittestcloud.youconfapp_utils.constant.GlobalConstants;
+import com.unittestcloud.youconfapp_utils.constant.GlobalConstant;
 
 /**
  * Default callback for google maps.
@@ -106,7 +106,7 @@ public class MapDefaultCallback implements
 					 */
 					private boolean updateMapWhenPositionChangedAtAMinimum(
 							float distance) {
-						if (distance > GlobalConstants.MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER.getInt()) {
+						if (distance > GlobalConstant.MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER.getInt()) {
 							return true;
 						}
 						return false;
