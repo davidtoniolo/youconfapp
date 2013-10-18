@@ -109,3 +109,20 @@ did not use a keystore which is added to the API key configured in the AndroidMa
 So the MapActivity which uses the GoogleMaps can't display the map until you changed these settings in your own Google Developer console.
 
 A great tutorial is here: http://www.vogella.com/articles/AndroidGoogleMaps/article.html#maps_key
+
+
+Open Source Software
+====================
+
+This project uses the following great libraries:
+
+[Apache Maven](http://maven.apache.org)
+[Android SDK](http://developer.android.com/sdk/index.html)
+[Google Play Services Lib](http://developer.android.com/google/play-services/index.html)
+[GoogleMaps Android API v2](https://developers.google.com/maps/documentation/android)
+[JUnit](http://junit.org)
+[mockito](https://code.google.com/p/mockito)
+[Robolectric](https://github.com/robolectric/robolectric)
+[STAND for Android](http://stand.spree.de)
+[SQLite](http://www.sqlite.org)
+[OrmLite](http://ormlite.com)
