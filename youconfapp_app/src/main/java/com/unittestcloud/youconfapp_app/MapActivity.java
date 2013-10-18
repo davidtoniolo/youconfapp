@@ -15,6 +15,8 @@ import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.callback.MapCallback;
 import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
+import com.unittestcloud.youconfapp_utils.map.Map;
+import com.unittestcloud.youconfapp_utils.map.MarkerOptionsFactory;
 import com.unittestcloud.youconfapp_utils.network.NetUtils;
 
 import de.akquinet.android.androlog.Log;
@@ -44,31 +46,59 @@ public class MapActivity extends Activity {
 
 		if (false == NetUtils.isNetworkAvailable(cm)) {
 			showDialog(DIALOG_ALERT_NETWORK_MISSING);
-			// User will get redirected to home screen.
+		} else {
+			setContentView(R.layout.gmaps);
+
+			MapFragment fragment = (MapFragment) getFragmentManager()
+					.findFragmentById(R.id.gmaps_map);
+
+			map = fragment.getMap();
+			
+			Map.initDefaultMap(map);
+			
+			MapCallback mapCallback = new MapCallback(getApplicationContext(),
+					map);
+			
+			locationClient = new LocationClient(this, mapCallback,
+					new MapListener(getApplicationContext()));
 		}
-
-		setContentView(R.layout.gmaps);
-
-		MapFragment fragment = (MapFragment) getFragmentManager()
-				.findFragmentById(R.id.gmaps_map);
-
-		map = fragment.getMap();
-		map.setMyLocationEnabled(true);
-
-		MapCallback mapCallback = new MapCallback(getApplicationContext(), map);
-		locationClient = new LocationClient(this, mapCallback, new MapListener(
-				getApplicationContext()));
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		locationClient.connect();
+		
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		
+		if (false == NetUtils.isNetworkAvailable(cm)) {
+			showDialog(DIALOG_ALERT_NETWORK_MISSING);
+		}
+		
+		if (null != locationClient && !locationClient.isConnected()) {
+			locationClient.connect();
+		}
 	}
-
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		
+		if (false == NetUtils.isNetworkAvailable(cm)) {
+			showDialog(DIALOG_ALERT_NETWORK_MISSING);
+		}
+		
+		if (null != locationClient && !locationClient.isConnected()) {
+			locationClient.connect();
+		}
+	}
+	
 	@Override
 	protected void onStop() {
-		locationClient.disconnect();
+		if (null != locationClient && locationClient.isConnected()) {
+			locationClient.disconnect();
+		}
 		super.onStop();
 	}
 
