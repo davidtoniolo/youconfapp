@@ -39,23 +39,18 @@ public class MainActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 	 * Get the current version number from database.
 	 * 
 	 * @return
+	 * @throws SQLException
 	 */
-	public String appVersion() {
+	public String appVersion() throws SQLException {
 		QueryBuilder<AppVersion, Integer> queryBuilder = getHelper()
 				.getAppVersionRuntimeDao().queryBuilder();
 		queryBuilder.orderBy(AppVersion.COLUMN_ID, false).limit(1l);
-		PreparedQuery<AppVersion> preparedQuery;
-		try {
-			preparedQuery = queryBuilder.prepare();
-			List<AppVersion> result = getHelper().getAppVersionRuntimeDao()
-					.query(preparedQuery);
-			if (result.isEmpty()) {
-				return "";
-			} else {
-				return result.get(0).getVersionNumber();
-			}
-		} catch (SQLException e) {
+		List<AppVersion> result = getHelper().getAppVersionRuntimeDao().query(
+				queryBuilder.prepare());
+
+		if (result.isEmpty()) {
+			return "";
 		}
-		return "";
+		return result.get(0).getVersionNumber();
 	}
 }

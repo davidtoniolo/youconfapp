@@ -81,7 +81,7 @@ public class MainActivityIT {
 	}
 
 	@Test
-	public void loadLatestVersionNumber_appVersion() {
+	public void loadLatestVersionNumber_appVersion() throws SQLException {
 		final String newVersion = "999.0";
 
 		RuntimeExceptionDao<AppVersion, Integer> appVersionDao = activity
