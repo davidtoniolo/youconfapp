@@ -11,10 +11,12 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "appversion")
 public class AppVersion {
 
-	@DatabaseField(id = true)
+	public static final String COLUMN_VERSION = "version_number";
+	
+	@DatabaseField(id = true, generatedId = true, canBeNull = false)
 	private String id;
 
-	@DatabaseField(columnName = "version_number", canBeNull = false)
+	@DatabaseField(columnName = COLUMN_VERSION, canBeNull = false)
 	private String versionNumber;
 
 	@Override
