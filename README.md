@@ -123,6 +123,7 @@ This project uses the following great libraries:
 [JUnit](http://junit.org)
 [mockito](https://code.google.com/p/mockito)
 [Robolectric](https://github.com/robolectric/robolectric)
+[Cobertura Code Coverage](http://cobertura.github.io/cobertura)
 [STAND for Android](http://stand.spree.de)
 [SQLite](http://www.sqlite.org)
 [OrmLite](http://ormlite.com)
