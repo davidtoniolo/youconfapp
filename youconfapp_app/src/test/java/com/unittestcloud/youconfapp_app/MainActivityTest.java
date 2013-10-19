@@ -5,17 +5,19 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  * 
  * @author davidtoniolo
  *
  */
+@RunWith(MockitoJUnitRunner.class)
 public class MainActivityTest {
 	
     @Before
     public void setUp() throws Exception {
-        
     }
 	
     @Test

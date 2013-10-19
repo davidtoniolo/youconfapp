@@ -13,8 +13,6 @@ import com.j256.ormlite.table.TableUtils;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.ormlite.entity.AppVersion;
 
-import de.akquinet.android.androlog.Log;
-
 /**
  * ORMLite helper class
  * 
@@ -43,12 +41,20 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
 		try {
-			Log.i(DatabaseHelper.class.getName(), "onCreate");
 			TableUtils.createTable(connectionSource, AppVersion.class);
 		} catch (SQLException e) {
-			Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
 			throw new RuntimeException(e);
 		}
+		insertData();
+	}
+
+	/**
+	 * Default data.
+	 */
+	private void insertData() {
+		RuntimeExceptionDao<AppVersion, Integer> dao = getAppVersionRuntimeDao();
+		AppVersion entry = new AppVersion("0.1");
+		dao.create(entry);
 	}
 
 	/**
@@ -60,12 +66,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
 			int oldVersion, int newVersion) {
 		try {
-			Log.i(DatabaseHelper.class.getName(), "onUpgrade");
 			TableUtils.dropTable(connectionSource, AppVersion.class, true);
 			// after we drop the old databases, we create the new ones
 			onCreate(db, connectionSource);
 		} catch (SQLException e) {
-			Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -74,7 +78,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	 * Returns the Database Access Object (DAO) for our AppVersion class. It
 	 * will create it or just give the cached value.
 	 */
-	public Dao<AppVersion, Integer> getDao() throws SQLException {
+	public Dao<AppVersion, Integer> getAppVersionDao() throws SQLException {
 		if (appVersionDao == null) {
 			appVersionDao = getDao(AppVersion.class);
 		}
@@ -86,7 +90,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	 * for our AppVersion class. It will create it or just give the cached
 	 * value. RuntimeExceptionDao only through RuntimeExceptions.
 	 */
-	public RuntimeExceptionDao<AppVersion, Integer> getAppVersionDao() {
+	public RuntimeExceptionDao<AppVersion, Integer> getAppVersionRuntimeDao() {
 		if (appVersionRuntimeDao == null) {
 			appVersionRuntimeDao = getRuntimeExceptionDao(AppVersion.class);
 		}

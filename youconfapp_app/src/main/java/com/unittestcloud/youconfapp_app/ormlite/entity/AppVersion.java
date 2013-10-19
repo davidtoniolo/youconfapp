@@ -11,25 +11,34 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "appversion")
 public class AppVersion {
 
+	public static final String COLUMN_ID = "id";
 	public static final String COLUMN_VERSION = "version_number";
 	
-	@DatabaseField(id = true, generatedId = true, canBeNull = false)
-	private String id;
+	@DatabaseField(generatedId = true)
+	private int id;
 
-	@DatabaseField(columnName = COLUMN_VERSION, canBeNull = false)
+	@DatabaseField(columnName = COLUMN_VERSION, canBeNull = false, unique = true)
 	private String versionNumber;
 
 	@Override
 	public String toString() {
-		return versionNumber;
+		return id + ";" + versionNumber;
 	}
 
 	public AppVersion() {
 		// ORMLite needs a no-arg constructor
 	}
-
+	
 	public AppVersion(String version) {
 		versionNumber = version;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getVersionNumber() {
