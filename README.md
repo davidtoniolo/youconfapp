@@ -80,7 +80,8 @@ Testing & Continuous Integration
 
 [JUnit](http://junit.org), [mockito](https://code.google.com/p/mockito)
 , [PowerMock](http://code.google.com/p/powermock) 
-& [Robolectric](https://github.com/robolectric/robolectric) is used for unit/integration testing.
+, [Robolectric](https://github.com/robolectric/robolectric)
+& [Cobertura](http://cobertura.github.io/cobertura) are used for unit and integration testing.
 
 youconf!app separates unit tests from integration tests with the 2 Maven plugins:
 
