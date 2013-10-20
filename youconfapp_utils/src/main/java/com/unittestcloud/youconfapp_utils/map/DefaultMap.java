@@ -6,27 +6,42 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
- * Helper class for GoogleMaps.
+ * Customization of a GoogleMap object.
  * 
  * @author davidtoniolo
  * 
  */
-public class Map {
+public final class DefaultMap implements CustomizableMap {
+
+	private GoogleMap map;
 
 	/**
-	 * Default initialization of GoogleMap.
+	 * @param map
+	 */
+	public DefaultMap(GoogleMap map) {
+		this.map = map;
+	}
+	
+	/**
+	 * Default custom google map.
 	 * 
 	 * @param map
 	 */
-	public static void initDefaultMap(GoogleMap map) {
+	public void configure() {
 		if (null != map) {
-			map.setMyLocationEnabled(true);
+			if (!map.isMyLocationEnabled()) {
+				map.setMyLocationEnabled(true);
+			}
 
-			Map.addMarkers(MarkerOptionsFactory
+			DefaultMap.addMarkers(MarkerOptionsFactory
 					.createDefaultDestinationMarkerOptions(), map);
 		}
 	}
-
+	
+	public GoogleMap getCustomMap() {
+		return map;
+	}
+	
 	/**
 	 * Add markers to the map from database.
 	 * 

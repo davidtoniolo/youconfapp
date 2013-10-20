@@ -8,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.unittestcloud.R;
@@ -16,7 +15,7 @@ import com.unittestcloud.youconfapp_app.callback.MapDefaultCallback;
 import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
 import com.unittestcloud.youconfapp_app.ormlite.helper.DatabaseHelper;
-import com.unittestcloud.youconfapp_utils.map.Map;
+import com.unittestcloud.youconfapp_utils.map.DefaultMap;
 import com.unittestcloud.youconfapp_utils.network.NetUtils;
 
 import de.akquinet.android.androlog.Log;
@@ -33,7 +32,6 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 
 	private static final int DIALOG_ALERT_NETWORK_MISSING = 10;
 
-	private GoogleMap map;
 	private LocationClient locationClient;
 
 	@Override
@@ -52,12 +50,11 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 			MapFragment fragment = (MapFragment) getFragmentManager()
 					.findFragmentById(R.id.gmaps_map);
 
-			map = fragment.getMap();
-
-			Map.initDefaultMap(map);
+			DefaultMap customMap = new DefaultMap(fragment.getMap());
+			customMap.configure();
 
 			MapDefaultCallback mapCallback = new MapDefaultCallback(
-					getApplicationContext(), map);
+					getApplicationContext(), customMap.getCustomMap());
 
 			locationClient = new LocationClient(this, mapCallback,
 					new MapListener(getApplicationContext()));
