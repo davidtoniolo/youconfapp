@@ -15,15 +15,35 @@
 		<powermock.version>1.4.12</powermock.version>
 	</properties>
 
-	<ciManagement>
+	<licenses>
+	</licenses>
 
+	<distributionManagement>
+	</distributionManagement>
+
+	<repositories>
+	</repositories>
+
+	<pluginRepositories>
+	</pluginRepositories>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/davidtoniolo/youconfapp/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Travis</system>
+		<url>https://travis-ci.org/davidtoniolo/youconfapp</url>
 	</ciManagement>
+
 	<scm>
 		<connection>scm:git:https://github.com/davidtoniolo/youconfapp.git</connection>
 		<developerConnection>scm:git:https://github.com/davidtoniolo/youconfapp.git</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/davidtoniolo/youconfapp</url>
 	</scm>
+
 	<developers>
 		<developer>
 			<id>davidtoniolo</id>
@@ -70,18 +90,6 @@
 		</plugins>
 	</reporting>
 
-	<distributionManagement>
-
-	</distributionManagement>
-
-	<repositories>
-
-	</repositories>
-
-	<pluginRepositories>
-
-	</pluginRepositories>
-
 	<dependencies>
 
 		<dependency>
@@ -125,7 +133,7 @@
 			<version>${powermock.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-api-mockito</artifactId>
@@ -250,6 +258,22 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<aggregate>true</aggregate>
+					<instrumentation>
+						<excludes>
+							<exclude>com/google/android/**/*.class</exclude>
+							<exclude>com/unittestcloud/**/BuildConfig.class</exclude>
+							<exclude>com/unittestcloud/**/R.class</exclude>
+							<exclude>com/unittestcloud/**/R*.class</exclude>
+						</excludes>
+					</instrumentation>
+				</configuration>
+			</plugin>
 		</plugins>
 
 	</build>
