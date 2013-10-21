@@ -1,5 +1,7 @@
 package com.unittestcloud.youconfapp_app;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -9,6 +11,9 @@ import android.os.Bundle;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.callback.MapDefaultCallback;
@@ -51,6 +56,7 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 					.findFragmentById(R.id.gmaps_map);
 
 			DefaultMap customMap = new DefaultMap(fragment.getMap());
+			customMap.addMarkers(addDefaultDestinationMarkerOptions());
 			customMap.configure();
 
 			MapDefaultCallback mapCallback = new MapDefaultCallback(
@@ -121,6 +127,30 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 				getString(com.unittestcloud.youconfapp_localization.R.string.negativeOnClickMapActivityDialogAlert),
 				new NegativeMapActivityOnClickListener(this));
 		return builder.create();
+	}
+
+	/**
+	 * @return
+	 */
+	public ArrayList<MarkerOptions> addDefaultDestinationMarkerOptions() {
+		
+		// TODO load data async
+		
+		LatLng HAMBURG = new LatLng(53.558, 9.927);
+		LatLng KIEL = new LatLng(53.551, 9.993);
+
+		ArrayList<MarkerOptions> list = new ArrayList<MarkerOptions>();
+
+		list.add(new MarkerOptions().position(HAMBURG).title("Hamburg"));
+		list.add(new MarkerOptions()
+				.position(KIEL)
+				.title("Kiel")
+				.icon(BitmapDescriptorFactory
+						.fromResource(R.drawable.social_group)));
+		
+		// TODO refresh map
+
+		return list;
 	}
 
 }

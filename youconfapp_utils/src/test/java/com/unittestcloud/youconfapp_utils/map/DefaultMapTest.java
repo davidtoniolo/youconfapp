@@ -2,6 +2,8 @@ package com.unittestcloud.youconfapp_utils.map;
 
 import static org.mockito.Mockito.times;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,8 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * 
@@ -36,6 +40,7 @@ public class DefaultMapTest {
 		PowerMockito.when(mapMock.isMyLocationEnabled()).thenReturn(false);
 
 		DefaultMap customMap = new DefaultMap(mapMock);
+		customMap.addMarkers(addDefaultDestinationMarkerOptions());
 		customMap.configure();
 
 		Mockito.verify(mapMock, times(1)).setMyLocationEnabled(true);
@@ -50,8 +55,29 @@ public class DefaultMapTest {
 		PowerMockito.when(mapMock.isMyLocationEnabled()).thenReturn(true);
 
 		DefaultMap customMap = new DefaultMap(mapMock);
+		customMap.addMarkers(addDefaultDestinationMarkerOptions());
 		customMap.configure();
 
 		Mockito.verify(mapMock, times(0)).setMyLocationEnabled(true);
 	}
+	
+	/**
+	 * Data provider
+	 * 
+	 * @return
+	 */
+	public ArrayList<MarkerOptions> addDefaultDestinationMarkerOptions() {
+		LatLng HAMBURG = new LatLng(53.558, 9.927);
+		LatLng KIEL = new LatLng(53.551, 9.993);
+
+		ArrayList<MarkerOptions> list = new ArrayList<MarkerOptions>();
+
+		list.add(new MarkerOptions().position(HAMBURG).title("Hamburg"));
+		list.add(new MarkerOptions()
+				.position(KIEL)
+				.title("Kiel"));
+
+		return list;
+	}
+	
 }

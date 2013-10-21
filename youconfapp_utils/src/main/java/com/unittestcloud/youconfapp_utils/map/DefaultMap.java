@@ -32,9 +32,6 @@ public final class DefaultMap implements CustomizableMap {
 			if (!map.isMyLocationEnabled()) {
 				map.setMyLocationEnabled(true);
 			}
-
-			DefaultMap.addMarkers(MarkerOptionsFactory
-					.createDefaultDestinationMarkerOptions(), map);
 		}
 	}
 	
@@ -47,7 +44,7 @@ public final class DefaultMap implements CustomizableMap {
 	 * 
 	 * @param map
 	 */
-	public static void addMarkers(List<MarkerOptions> options, GoogleMap map) {
+	public void addMarkers(List<MarkerOptions> options) {
 		if (null != options) {
 			for (MarkerOptions option : options) {
 				map.addMarker(option);
