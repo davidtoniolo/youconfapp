@@ -85,7 +85,7 @@ Testing & Continuous Integration
 
 youconf!app separates unit tests from integration tests with the 2 Maven plugins:
 
-* [maven-surefire-plugin](http://maven.apache.org/surefire/maven-surefire-plugin)
+* [maven-failsafe-plugin](http://maven.apache.org/surefire/maven-failsafe-plugin)
 * [build-helper-maven-plugin](http://mojo.codehaus.org/build-helper-maven-plugin)
 
 

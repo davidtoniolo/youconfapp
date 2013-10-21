@@ -13,6 +13,7 @@
 		<android.sdk.version>4.0.1.2</android.sdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<powermock.version>1.4.12</powermock.version>
+		<failsafe.version>2.16</failsafe.version>
 	</properties>
 
 	<licenses>
@@ -212,11 +213,17 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.13</version>
+				<version>${failsafe.version}</version>
 				<executions>
 					<execution>
+						<id>integration-test</id>
 						<goals>
 							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
 							<goal>verify</goal>
 						</goals>
 					</execution>
@@ -273,6 +280,13 @@
 						</excludes>
 					</instrumentation>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 

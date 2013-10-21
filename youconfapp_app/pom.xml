@@ -26,7 +26,7 @@
 			<scope>compile</scope>
 			<type>apklib</type>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.unittestcloud</groupId>
 			<artifactId>youconfapp_utils</artifactId>
@@ -137,6 +137,12 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${failsafe.version}</version>
 			</plugin>
 		</plugins>
 	</build>
