@@ -6,5 +6,8 @@
     <!-- MapActivity -->
     <string name="titleOnClickMapActivityDialogAlert">Sorry - you need a connection to the internet to see the map. You will get back to home screen.</string>
     <string name="negativeOnClickMapActivityDialogAlert">OK</string>
+    
+    <string name="mapHasBeenUpdatedWithMarkers">Map has been successfully updated!</string>
+    <string name="noLocationsAvailableForUpdates">No locations available to update the map.</string>
 
 </resources>
