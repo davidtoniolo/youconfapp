@@ -9,15 +9,17 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.unittestcloud.R;
-import com.unittestcloud.youconfapp_utils.service.MarkersLoader;
+import com.unittestcloud.youconfapp_utils.service.MarkersLoaderAbstract;
 
 /**
  * Create MarkerOptions which should be displayed by default in a map.
  * 
+ * This is an android.app.IntentService component and runs asynchronously.
+ * 
  * @author davidtoniolo
  * 
  */
-public class AddDefaultMarkersService extends MarkersLoader {
+public class AddDefaultMarkersService extends MarkersLoaderAbstract {
 
 	private static final String TAG = "youconfapp_app.AddMarkersService";
 

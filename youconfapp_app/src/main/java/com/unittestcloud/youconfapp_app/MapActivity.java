@@ -168,6 +168,9 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 		return super.onCreateDialog(id);
 	}
 
+	/**
+	 * Load data in asynchronous process.
+	 */
 	@Override
 	public void loadMarkerOptions() {
 		Intent intent = new Intent(this, AddDefaultMarkersService.class);

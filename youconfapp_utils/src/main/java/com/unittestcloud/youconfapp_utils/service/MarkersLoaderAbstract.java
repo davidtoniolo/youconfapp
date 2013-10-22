@@ -15,7 +15,7 @@ import android.app.IntentService;
  * @author davidtoniolo
  * 
  */
-public abstract class MarkersLoader extends IntentService {
+public abstract class MarkersLoaderAbstract extends IntentService {
 
 	public static final String NOTIFICATION 		= "com.unittestcloud.youconfapp_app";
 	public static final String RESULT 				= "result";
@@ -26,7 +26,7 @@ public abstract class MarkersLoader extends IntentService {
 
 	protected int result = Activity.RESULT_CANCELED;
 
-	protected MarkersLoader(String name) {
+	protected MarkersLoaderAbstract(String name) {
 		super(name);
 	}
 
