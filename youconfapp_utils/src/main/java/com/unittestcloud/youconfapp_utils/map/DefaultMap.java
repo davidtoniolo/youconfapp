@@ -21,12 +21,13 @@ public final class DefaultMap implements CustomizableMap {
 	public DefaultMap(GoogleMap map) {
 		this.map = map;
 	}
-	
+
 	/**
 	 * Default custom google map.
 	 * 
 	 * @param map
 	 */
+	@Override
 	public void configure() {
 		if (null != map) {
 			if (!map.isMyLocationEnabled()) {
@@ -34,16 +35,18 @@ public final class DefaultMap implements CustomizableMap {
 			}
 		}
 	}
-	
+
+	@Override
 	public GoogleMap getCustomMap() {
 		return map;
 	}
-	
+
 	/**
 	 * Add markers to the map from database.
 	 * 
 	 * @param map
 	 */
+	@Override
 	public void addMarkers(List<MarkerOptions> options) {
 		if (null != options) {
 			for (MarkerOptions option : options) {
@@ -51,4 +54,5 @@ public final class DefaultMap implements CustomizableMap {
 			}
 		}
 	}
+
 }

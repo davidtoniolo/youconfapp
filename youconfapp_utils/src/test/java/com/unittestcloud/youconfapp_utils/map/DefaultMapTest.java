@@ -32,8 +32,8 @@ public class DefaultMapTest {
 	}
 
 	@Test
-	public void verifyConfigurationOfDefaultMap() throws InstantiationException,
-			IllegalAccessException {
+	public void verifyConfigurationOfDefaultMap()
+			throws InstantiationException, IllegalAccessException {
 		PowerMockito.mockStatic(GoogleMap.class);
 		GoogleMap mapMock = PowerMockito.mock(GoogleMap.class);
 
@@ -45,10 +45,10 @@ public class DefaultMapTest {
 
 		Mockito.verify(mapMock, times(1)).setMyLocationEnabled(true);
 	}
-	
+
 	@Test
-	public void verifyConfigWithMyLocationAlreadyEnabled() throws InstantiationException,
-			IllegalAccessException {
+	public void verifyConfigWithMyLocationAlreadyEnabled()
+			throws InstantiationException, IllegalAccessException {
 		PowerMockito.mockStatic(GoogleMap.class);
 		GoogleMap mapMock = PowerMockito.mock(GoogleMap.class);
 
@@ -60,7 +60,7 @@ public class DefaultMapTest {
 
 		Mockito.verify(mapMock, times(0)).setMyLocationEnabled(true);
 	}
-	
+
 	/**
 	 * Data provider
 	 * 
@@ -73,11 +73,9 @@ public class DefaultMapTest {
 		ArrayList<MarkerOptions> list = new ArrayList<MarkerOptions>();
 
 		list.add(new MarkerOptions().position(HAMBURG).title("Hamburg"));
-		list.add(new MarkerOptions()
-				.position(KIEL)
-				.title("Kiel"));
+		list.add(new MarkerOptions().position(KIEL).title("Kiel"));
 
 		return list;
 	}
-	
+
 }
