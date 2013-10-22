@@ -14,6 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<powermock.version>1.4.12</powermock.version>
 		<failsafe.version>2.16</failsafe.version>
+		<build.helper.version>1.5</build.helper.version>
 	</properties>
 
 	<licenses>
@@ -234,7 +235,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.5</version>
+				<version>${build.helper.version}</version>
 				<executions>
 					<execution>
 						<id>add-test-sources</id>
@@ -314,6 +315,35 @@
 								<goals>
 									<goal>jar-no-fork</goal>
 								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Optimize coverage for integration tests. Does not help in any cases. 
+			Run it with: mvn cobertura:cobertura -Pitcoverage -->
+		<profile>
+			<id>itcoverage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<version>${build.helper.version}</version>
+						<executions>
+							<execution>
+								<id>add-test-source</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>src/it/java</source>
+									</sources>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>

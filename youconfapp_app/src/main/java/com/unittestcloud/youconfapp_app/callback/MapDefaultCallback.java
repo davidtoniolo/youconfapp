@@ -11,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.unittestcloud.youconfapp_localization.R;
 import com.unittestcloud.youconfapp_utils.constant.GlobalConstant;
@@ -28,6 +29,7 @@ public class MapDefaultCallback implements
 	private Context context;
 	private Location currentLocation;
 	private LocationManager locationManager;
+	private Marker markerMyLocation;
 
 	/**
 	 * @param context
@@ -75,16 +77,22 @@ public class MapDefaultCallback implements
 								|| updateMapWhenPositionChangedAtAMinimum(results[0])) {
 							currentLocation = location;
 
-							map.addMarker(new MarkerOptions()
-									.position(
-											new LatLng(currentLocation
-													.getLatitude(),
-													currentLocation
-															.getLongitude()))
-									.title(context
-											.getString(R.string.yourPositionMarkerTitle))
-									.icon(BitmapDescriptorFactory
-											.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+							if (null != markerMyLocation) {
+								markerMyLocation.remove();
+							}
+
+							markerMyLocation = map
+									.addMarker(new MarkerOptions()
+											.position(
+													new LatLng(
+															currentLocation
+																	.getLatitude(),
+															currentLocation
+																	.getLongitude()))
+											.title(context
+													.getString(R.string.yourPositionMarkerTitle))
+											.icon(BitmapDescriptorFactory
+													.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
 							/*
 							 * Center position in google maps.
@@ -106,7 +114,8 @@ public class MapDefaultCallback implements
 					 */
 					private boolean updateMapWhenPositionChangedAtAMinimum(
 							float distance) {
-						if (distance > GlobalConstant.MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER.getInt()) {
+						if (distance > GlobalConstant.MINIMUM_DISTANCE_TO_UPDATE_LOCAL_POSITION_IN_METER
+								.getInt()) {
 							return true;
 						}
 						return false;
