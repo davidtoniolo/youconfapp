@@ -31,7 +31,10 @@ import de.akquinet.android.androlog.Log;
 
 /**
  * 
- * @todo avoid updating map after orientation/configuration changes. Toast is displayed each time.
+ * @todo avoid updating map after orientation/configuration changes. Toast is
+ *       displayed each time.
+ *       
+ * @todo replace deprecated usages
  * 
  * @author davidtoniolo
  * 
@@ -48,6 +51,9 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 
 	private DefaultMap customMap;
 
+	/*
+	 * TODO refactor to new class
+	 */
 	private BroadcastReceiver receiver = new BroadcastReceiver() {
 
 		@Override
