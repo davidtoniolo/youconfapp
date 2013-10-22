@@ -25,7 +25,7 @@ import com.unittestcloud.youconfapp_app.ormlite.helper.DatabaseHelper;
 import com.unittestcloud.youconfapp_app.service.AddDefaultMarkersService;
 import com.unittestcloud.youconfapp_utils.map.DefaultMap;
 import com.unittestcloud.youconfapp_utils.network.NetUtils;
-import com.unittestcloud.youconfapp_utils.service.AsyncMarkerOptionsLoadable;
+import com.unittestcloud.youconfapp_utils.service.AsyncLoadableMarkerOptions;
 
 import de.akquinet.android.androlog.Log;
 
@@ -37,7 +37,7 @@ import de.akquinet.android.androlog.Log;
  * 
  */
 public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
-		AsyncMarkerOptionsLoadable {
+		AsyncLoadableMarkerOptions {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = "youconfapp_app.MapActivity";

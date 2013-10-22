@@ -6,14 +6,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
- * Customization of a GoogleMap object.
+ * Default configuration with standard features of a youconfapp map.
  * 
  * @author davidtoniolo
  * 
  */
 public final class DefaultMap implements CustomizableMap {
 
-	private GoogleMap map;
+	private final GoogleMap map;
 
 	/**
 	 * @param map
