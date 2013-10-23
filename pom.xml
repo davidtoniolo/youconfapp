@@ -357,5 +357,6 @@
 		<module>youconfapp_app</module>
 		<module>youconfapp_localization</module>
 		<module>youconfapp_utils</module>
+		<module>youconfapp_menu</module>
 	</modules>
 </project>
