@@ -1,28 +1,25 @@
 package com.unittestcloud.youconfapp_app;
 
-import java.util.ArrayList;
-
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.callback.MapDefaultCallback;
 import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
 import com.unittestcloud.youconfapp_app.ormlite.helper.DatabaseHelper;
+import com.unittestcloud.youconfapp_app.receiver.MarkerOptionsReceiver;
 import com.unittestcloud.youconfapp_app.service.AddDefaultMarkersService;
+import com.unittestcloud.youconfapp_utils.map.CustomizableMap;
 import com.unittestcloud.youconfapp_utils.map.DefaultMap;
 import com.unittestcloud.youconfapp_utils.network.NetUtils;
 import com.unittestcloud.youconfapp_utils.service.AsyncLoadableMarkerOptions;
@@ -33,7 +30,7 @@ import de.akquinet.android.androlog.Log;
  * 
  * @todo avoid updating map after orientation/configuration changes. Toast is
  *       displayed each time.
- *       
+ * 
  * @todo replace deprecated usages
  * 
  * @author davidtoniolo
@@ -49,44 +46,9 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 
 	private LocationClient locationClient;
 
-	private DefaultMap customMap;
+	private CustomizableMap customMap;
 
-	/*
-	 * TODO refactor to new class
-	 */
-	private BroadcastReceiver receiver = new BroadcastReceiver() {
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Bundle bundle = intent.getExtras();
-			if (bundle != null) {
-				String string = bundle
-						.getString(AddDefaultMarkersService.RESPONSE_STATUS);
-				if (string.equals(AddDefaultMarkersService.RESPONSE_STATUS_OK)) {
-					ArrayList<MarkerOptions> list = bundle
-							.getParcelableArrayList(AddDefaultMarkersService.MARKEROPTIONS);
-					if (!list.isEmpty()) {
-						customMap.addMarkers(list);
-						Toast.makeText(MapActivity.this,
-								R.string.mapHasBeenUpdatedWithMarkers,
-								Toast.LENGTH_LONG).show();
-					} else {
-						Toast.makeText(MapActivity.this,
-								R.string.noLocationsAvailableForUpdates,
-								Toast.LENGTH_LONG).show();
-					}
-				} else {
-
-					// TODO show dialog and redirect to home screen?
-
-				}
-			} else {
-
-				// TODO show dialog and redirect to home screen?
-
-			}
-		}
-	};
+	private MarkerOptionsReceiver receiver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +75,13 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 			locationClient = new LocationClient(this, mapCallback,
 					new MapListener(getApplicationContext()));
 
-			loadMarkerOptions();
+			receiver = new MarkerOptionsReceiver(customMap);
+
+			if (receiver.getLoadStatus()) {
+				customMap.addMarkers(receiver.getMarkerOptions());
+			} else {
+				loadMarkerOptions();
+			}
 		}
 	}
 
@@ -136,8 +104,10 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 	protected void onResume() {
 		super.onResume();
 
-		registerReceiver(receiver, new IntentFilter(
-				AddDefaultMarkersService.NOTIFICATION));
+		if (!receiver.getLoadStatus()) {
+			registerReceiver(receiver, new IntentFilter(
+					AddDefaultMarkersService.NOTIFICATION));
+		}
 
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -153,7 +123,9 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 	@Override
 	protected void onPause() {
 		super.onPause();
-		unregisterReceiver(receiver);
+		if (!receiver.getLoadStatus()) {
+			unregisterReceiver(receiver);
+		}
 	}
 
 	@Override

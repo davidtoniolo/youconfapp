@@ -30,6 +30,7 @@ public class AddDefaultMarkersService extends MarkersLoaderAbstract {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		sendResponse(RESPONSE_STATUS_OK, createMarkerOptions());
+		stopSelf();
 	}
 
 	@Override
