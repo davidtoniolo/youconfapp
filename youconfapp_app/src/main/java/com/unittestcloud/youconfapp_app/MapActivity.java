@@ -10,16 +10,19 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.MapFragment;
-import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.callback.MapDefaultCallback;
 import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
-import com.unittestcloud.youconfapp_app.ormlite.helper.DatabaseHelper;
 import com.unittestcloud.youconfapp_app.receiver.MarkerOptionsReceiver;
 import com.unittestcloud.youconfapp_app.service.AddDefaultMarkersService;
+import com.unittestcloud.youconfapp_utils.activity.ActionBarMapActivityMenu;
 import com.unittestcloud.youconfapp_utils.map.CustomizableMap;
 import com.unittestcloud.youconfapp_utils.map.DefaultMap;
 import com.unittestcloud.youconfapp_utils.network.NetUtils;
@@ -29,16 +32,13 @@ import de.akquinet.android.androlog.Log;
 
 /**
  * 
- * @todo avoid updating map after orientation/configuration changes. Toast is
- *       displayed each time.
- * 
  * @todo replace deprecated usages
  * 
  * @author davidtoniolo
  * 
  */
-public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
-		AsyncLoadableMarkerOptions {
+public class MapActivity extends SherlockActivity implements
+		ActionBarMapActivityMenu, AsyncLoadableMarkerOptions {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = "youconfapp_app.MapActivity";
@@ -96,7 +96,7 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
+
 		receiver = new MarkerOptionsReceiver(customMap);
 
 		if (receiver.isDataAlreadyLoaded()) {
@@ -145,6 +145,27 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 		return super.onCreateDialog(id);
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.actionbar_map_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.openPreferencesOnClick:
+			openPreferencesOnClick();
+			return true;
+		case R.id.refresh:
+			refreshOnClick();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
 	/**
 	 * Load data in asynchronous process.
 	 */
@@ -166,6 +187,17 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 				getString(com.unittestcloud.youconfapp_localization.R.string.negativeOnClickMapActivityDialogAlert),
 				new NegativeMapActivityOnClickListener(this));
 		return builder.create();
+	}
+
+	@Override
+	public void refreshOnClick() {
+		loadMarkerOptions();
+	}
+
+	@Override
+	public void openPreferencesOnClick() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

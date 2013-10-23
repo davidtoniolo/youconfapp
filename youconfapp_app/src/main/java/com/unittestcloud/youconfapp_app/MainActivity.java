@@ -5,9 +5,10 @@ import java.util.List;
 
 import android.os.Bundle;
 
-import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
-import com.j256.ormlite.dao.RuntimeExceptionDao;
-import com.j256.ormlite.stmt.PreparedQuery;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.ormlite.entity.AppVersion;
@@ -21,10 +22,12 @@ import de.akquinet.android.androlog.Log;
  * @author davidtoniolo
  * 
  */
-public class MainActivity extends OrmLiteBaseActivity<DatabaseHelper> {
+public class MainActivity extends SherlockActivity {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = "youconfapp_app.MainActivity";
+
+	private DatabaseHelper ormHelper = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,29 @@ public class MainActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 		Log.init(this);
 
 		setContentView(R.layout.main);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (ormHelper != null) {
+			OpenHelperManager.releaseHelper();
+			ormHelper = null;
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getSupportMenuInflater();
+		inflater.inflate(R.menu.actionbar_map_menu, menu);
+		return true;
+	}
+
+	public DatabaseHelper getHelper() {
+		if (ormHelper == null) {
+			ormHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+		}
+		return ormHelper;
 	}
 
 	/**
@@ -53,4 +79,5 @@ public class MainActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 		}
 		return result.get(0).getVersionNumber();
 	}
+
 }
