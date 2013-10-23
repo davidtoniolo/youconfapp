@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--
+    README
+    
+    This menu has an interface with onClick handler methods for each item.
+	Please update the interface when you change the item list here!
+	
+	com.unittestcloud.youconfapp_utils.activity.ActionBarMapActivityMenu
+    -->
+
+    <item
+        android:id="@+id/openPreferencesOnClick"
+        android:title="@string/preferences"/>
+
+    <item
+        android:id="@+id/refresh"
+        android:title="@string/refresh"/>
+
+</menu>
