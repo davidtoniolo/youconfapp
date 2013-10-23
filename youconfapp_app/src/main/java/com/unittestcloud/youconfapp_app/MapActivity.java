@@ -23,7 +23,7 @@ import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
 import com.unittestcloud.youconfapp_app.receiver.MarkerOptionsReceiver;
 import com.unittestcloud.youconfapp_app.service.AddDefaultMarkersService;
-import com.unittestcloud.youconfapp_utils.activity.ActionBarMapActivityMenu;
+import com.unittestcloud.youconfapp_menu.ActionBarMapActivityMenu;
 import com.unittestcloud.youconfapp_utils.map.CustomizableMap;
 import com.unittestcloud.youconfapp_utils.map.DefaultMap;
 import com.unittestcloud.youconfapp_utils.network.NetUtils;
