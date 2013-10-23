@@ -19,6 +19,14 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>com.unittestcloud</groupId>
+			<artifactId>youconfapp_localization</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+			<type>apklib</type>
+		</dependency>
+		
 		<!-- This is for the Android XML resources -->
 		<dependency>
 			<groupId>com.google.android.gms</groupId>
