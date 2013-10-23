@@ -9,5 +9,8 @@
     
     <string name="mapHasBeenUpdatedWithMarkers">Map has been successfully updated!</string>
     <string name="noLocationsAvailableForUpdates">No locations available to update the map.</string>
+    
+    <string name="preferences">Preferences</string>
+    <string name="refresh">Refresh</string>
 
 </resources>
