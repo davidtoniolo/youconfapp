@@ -39,7 +39,7 @@ public class DefaultMapTest {
 
 		PowerMockito.when(mapMock.isMyLocationEnabled()).thenReturn(false);
 
-		DefaultMap customMap = new DefaultMap(mapMock);
+		DefaultMap customMap = new DefaultMap(mapMock, null);
 		customMap.addMarkers(addDefaultDestinationMarkerOptions());
 		customMap.configure();
 
@@ -54,7 +54,7 @@ public class DefaultMapTest {
 
 		PowerMockito.when(mapMock.isMyLocationEnabled()).thenReturn(true);
 
-		DefaultMap customMap = new DefaultMap(mapMock);
+		DefaultMap customMap = new DefaultMap(mapMock, null);
 		customMap.addMarkers(addDefaultDestinationMarkerOptions());
 		customMap.configure();
 

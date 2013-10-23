@@ -18,6 +18,7 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.MapFragment;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.callback.MapDefaultCallback;
+import com.unittestcloud.youconfapp_app.listener.DefaultMarkerOnClickListener;
 import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
 import com.unittestcloud.youconfapp_app.receiver.MarkerOptionsReceiver;
@@ -67,7 +68,8 @@ public class MapActivity extends SherlockActivity implements
 			MapFragment fragment = (MapFragment) getFragmentManager()
 					.findFragmentById(R.id.gmaps_map);
 
-			customMap = new DefaultMap(fragment.getMap());
+			customMap = new DefaultMap(fragment.getMap(),
+					new DefaultMarkerOnClickListener(this));
 			customMap.configure();
 
 			MapDefaultCallback mapCallback = new MapDefaultCallback(

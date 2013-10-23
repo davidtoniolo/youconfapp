@@ -3,6 +3,7 @@ package com.unittestcloud.youconfapp_utils.map;
 import java.util.List;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
@@ -17,9 +18,11 @@ public final class DefaultMap implements CustomizableMap {
 
 	/**
 	 * @param map
+	 * @param listener
 	 */
-	public DefaultMap(GoogleMap map) {
+	public DefaultMap(GoogleMap map, OnMarkerClickListener listener) {
 		this.map = map;
+		this.map.setOnMarkerClickListener(listener);
 	}
 
 	/**
