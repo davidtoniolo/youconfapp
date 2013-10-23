@@ -75,7 +75,7 @@ public class MarkerOptionsReceiver extends BroadcastReceiver {
 	 * 
 	 * @return
 	 */
-	public boolean getLoadStatus() {
+	public boolean isDataAlreadyLoaded() {
 		return mapDataAlreadyLoaded;
 	}
 

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.MapFragment;
@@ -74,14 +75,6 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 
 			locationClient = new LocationClient(this, mapCallback,
 					new MapListener(getApplicationContext()));
-
-			receiver = new MarkerOptionsReceiver(customMap);
-
-			if (receiver.getLoadStatus()) {
-				customMap.addMarkers(receiver.getMarkerOptions());
-			} else {
-				loadMarkerOptions();
-			}
 		}
 	}
 
@@ -103,10 +96,15 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 	@Override
 	protected void onResume() {
 		super.onResume();
+		
+		receiver = new MarkerOptionsReceiver(customMap);
 
-		if (!receiver.getLoadStatus()) {
-			registerReceiver(receiver, new IntentFilter(
-					AddDefaultMarkersService.NOTIFICATION));
+		if (receiver.isDataAlreadyLoaded()) {
+			customMap.addMarkers(receiver.getMarkerOptions());
+		} else {
+			LocalBroadcastManager.getInstance(this).registerReceiver(receiver,
+					new IntentFilter(AddDefaultMarkersService.NOTIFICATION));
+			loadMarkerOptions();
 		}
 
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -123,8 +121,9 @@ public class MapActivity extends OrmLiteBaseActivity<DatabaseHelper> implements
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (!receiver.getLoadStatus()) {
-			unregisterReceiver(receiver);
+		if (!receiver.isDataAlreadyLoaded()) {
+			LocalBroadcastManager.getInstance(this)
+					.unregisterReceiver(receiver);
 		}
 	}
 

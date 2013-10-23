@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -46,7 +47,8 @@ public class AddDefaultMarkersService extends MarkersLoaderAbstract {
 		intent.putExtra(RESPONSE_STATUS, status);
 		intent.putExtra(RESULT, result);
 		intent.putExtra(MARKEROPTIONS, mOptions);
-		sendBroadcast(intent);
+
+		LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 	}
 
 	@Override
