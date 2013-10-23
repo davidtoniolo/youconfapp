@@ -32,6 +32,14 @@ An Android Library Project as a Maven submodule.
 Just a kind of resource storage module for localization of strings, drawables, etc.
 
 
+/youconfapp_menu
+================
+
+An Android Library Project as a Maven submodule.
+
+Menus in XML format and an interface API activities have to implement when using a menu.
+
+
 /youconfapp_utils
 =================
 
