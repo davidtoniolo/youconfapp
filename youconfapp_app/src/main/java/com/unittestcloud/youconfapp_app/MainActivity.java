@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -13,6 +14,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.ormlite.entity.AppVersion;
 import com.unittestcloud.youconfapp_app.ormlite.helper.DatabaseHelper;
+import com.unittestcloud.youconfapp_utils.activity.StartUtils;
 
 import de.akquinet.android.androlog.Log;
 
@@ -78,6 +80,15 @@ public class MainActivity extends SherlockActivity {
 			return "";
 		}
 		return result.get(0).getVersionNumber();
+	}
+	
+	/**
+	 * Temp stub
+	 * 
+	 * @param view
+	 */
+	public void runMapActivity(final View view) {
+		StartUtils.startActivity(this, MapActivity.class);
 	}
 
 }
