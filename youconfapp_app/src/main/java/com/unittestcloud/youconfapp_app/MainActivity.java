@@ -11,9 +11,11 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.octo.android.robospice.SpiceManager;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.ormlite.entity.AppVersion;
 import com.unittestcloud.youconfapp_app.ormlite.helper.DatabaseHelper;
+import com.unittestcloud.youconfapp_app.service.LoadDefaultMarkersSpiceService;
 import com.unittestcloud.youconfapp_utils.activity.StartUtils;
 
 import de.akquinet.android.androlog.Log;
@@ -31,6 +33,11 @@ public class MainActivity extends SherlockActivity {
 
 	private DatabaseHelper ormHelper = null;
 
+	private static final String JSON_CACHE_KEY = "marker_json";
+
+	protected SpiceManager spiceManager = new SpiceManager(
+			LoadDefaultMarkersSpiceService.class);
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +45,20 @@ public class MainActivity extends SherlockActivity {
 		Log.init(this);
 
 		setContentView(R.layout.main);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+
+		spiceManager.start(this);
+	}
+
+	@Override
+	protected void onStop() {
+		spiceManager.shouldStop();
+
+		super.onStop();
 	}
 
 	@Override
@@ -81,7 +102,7 @@ public class MainActivity extends SherlockActivity {
 		}
 		return result.get(0).getVersionNumber();
 	}
-	
+
 	/**
 	 * Temp stub
 	 * 

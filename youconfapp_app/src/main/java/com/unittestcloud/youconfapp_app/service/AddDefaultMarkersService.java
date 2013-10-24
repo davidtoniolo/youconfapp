@@ -19,6 +19,7 @@ import com.unittestcloud.youconfapp_utils.service.MarkersLoaderAbstract;
  * 
  * @author davidtoniolo
  * 
+ * @deprecated Use RoboSpice for asynchronous networking or other long running tasks.
  */
 public class AddDefaultMarkersService extends MarkersLoaderAbstract {
 

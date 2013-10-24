@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -16,13 +17,20 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.MapFragment;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.persistence.DurationInMillis;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.callback.MapDefaultCallback;
 import com.unittestcloud.youconfapp_app.listener.DefaultMarkerOnClickListener;
 import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
+import com.unittestcloud.youconfapp_app.model.MarkerOptionsDao;
 import com.unittestcloud.youconfapp_app.receiver.MarkerOptionsReceiver;
+import com.unittestcloud.youconfapp_app.request.MarkerOptionsJsonRequest;
 import com.unittestcloud.youconfapp_app.service.AddDefaultMarkersService;
+import com.unittestcloud.youconfapp_app.service.LoadDefaultMarkersSpiceService;
 import com.unittestcloud.youconfapp_menu.ActionBarMapActivityMenu;
 import com.unittestcloud.youconfapp_utils.map.CustomizableMap;
 import com.unittestcloud.youconfapp_utils.map.DefaultMap;
@@ -51,6 +59,11 @@ public class MapActivity extends SherlockActivity implements
 	private CustomizableMap customMap;
 
 	private MarkerOptionsReceiver receiver;
+
+	private static final String JSON_CACHE_KEY = "markeroptions_json";
+
+	protected SpiceManager spiceManager = new SpiceManager(
+			LoadDefaultMarkersSpiceService.class);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +96,8 @@ public class MapActivity extends SherlockActivity implements
 	@Override
 	protected void onStart() {
 		super.onStart();
+
+		spiceManager.start(this);
 
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -131,6 +146,8 @@ public class MapActivity extends SherlockActivity implements
 
 	@Override
 	protected void onStop() {
+		spiceManager.shouldStop();
+
 		if (null != locationClient && locationClient.isConnected()) {
 			locationClient.disconnect();
 		}
@@ -173,8 +190,11 @@ public class MapActivity extends SherlockActivity implements
 	 */
 	@Override
 	public void loadMarkerOptions() {
-		Intent intent = new Intent(this, AddDefaultMarkersService.class);
-		startService(intent);
+//		Intent intent = new Intent(this, AddDefaultMarkersService.class);
+//		startService(intent);
+		spiceManager.execute(new MarkerOptionsJsonRequest(), JSON_CACHE_KEY,
+				DurationInMillis.ALWAYS_EXPIRED,
+				new MarkerOptionsRequestListener(customMap));
 	}
 
 	/**
@@ -202,4 +222,36 @@ public class MapActivity extends SherlockActivity implements
 
 	}
 
+	/**
+	 * 
+	 * TODO refactor to single class file
+	 * 
+	 * @author davidtoniolo
+	 * 
+	 */
+	private class MarkerOptionsRequestListener implements
+			RequestListener<MarkerOptionsDao> {
+
+		private CustomizableMap customMap;
+
+		public MarkerOptionsRequestListener(CustomizableMap customMap) {
+			this.customMap = customMap;
+		}
+
+		@Override
+		public void onRequestFailure(SpiceException arg0) {
+			Toast.makeText(getApplicationContext(), "SPICE IS BAD",
+					Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		public void onRequestSuccess(MarkerOptionsDao result) {
+			customMap.getCustomMap().clear();
+			customMap.addMarkers(result.getMarkerOptions());
+
+			Toast.makeText(getApplicationContext(), "Markers updated!",
+					Toast.LENGTH_LONG).show();
+		}
+
+	}
 }

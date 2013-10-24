@@ -29,6 +29,7 @@
 
         <service android:name="com.unittestcloud.youconfapp_app.service.AddDefaultMarkersService">
         </service>
+        <service android:exported="false" android:name="com.unittestcloud.youconfapp_app.service.LoadDefaultMarkersSpiceService"/>
     </application>
 
 </manifest>

@@ -19,6 +19,7 @@ import com.unittestcloud.youconfapp_utils.map.CustomizableMap;
  * 
  * @author davidtoniolo
  * 
+ * @deprecated Use RoboSpice to listen on asynchronous events from long running tasks.
  */
 public class MarkerOptionsReceiver extends BroadcastReceiver {
 
