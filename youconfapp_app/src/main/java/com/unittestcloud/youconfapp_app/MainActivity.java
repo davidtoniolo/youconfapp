@@ -33,7 +33,7 @@ public class MainActivity extends SherlockActivity {
 
 	private DatabaseHelper ormHelper = null;
 
-	private static final String JSON_CACHE_KEY = "marker_json";
+	private static final String JSON_CACHE_KEY = "datakey_json";
 
 	protected SpiceManager spiceManager = new SpiceManager(
 			LoadDefaultMarkersSpiceService.class);
