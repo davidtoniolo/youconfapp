@@ -140,3 +140,4 @@ This project uses the following great libraries:
 [ActionBarSherlock](https://github.com/JakeWharton/ActionBarSherlock)
 [SQLite](http://www.sqlite.org)
 [OrmLite](http://ormlite.com)
+[RoboSpice](https://github.com/octo-online/robospice)
