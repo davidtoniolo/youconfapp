@@ -4,7 +4,7 @@
     <string name="yourPositionMarkerTitle">You are here</string>
     
     <!-- MapActivity -->
-    <string name="titleOnClickMapActivityDialogAlert">Sorry - you need a connection to the internet to see the map. You will get back to home screen.</string>
+    <string name="titleOnClickMapActivityDialogAlert">Sorry - you need a connection to the internet to see the map. You will get back to start screen.</string>
     <string name="negativeOnClickMapActivityDialogAlert">OK</string>
     
     <string name="mapHasBeenUpdatedWithMarkers">Map has been successfully updated!</string>
@@ -12,5 +12,9 @@
     
     <string name="preferences">Preferences</string>
     <string name="refresh">Refresh</string>
+    
+    
+    <!-- Exception Messages - For developers only. -->
+    <string name="missingInstanceOfCustomizableMap">Argument of CustomizableMap was null</string>
 
 </resources>
