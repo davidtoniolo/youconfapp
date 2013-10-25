@@ -136,6 +136,7 @@ This project uses the following great libraries:
 [JUnit](http://junit.org)
 [mockito](https://code.google.com/p/mockito)
 [PowerMock](http://code.google.com/p/powermock)
+[mockwebserver](https://code.google.com/p/mockwebserver)
 [Robolectric](https://github.com/robolectric/robolectric)
 [Cobertura Code Coverage](http://cobertura.github.io/cobertura)
 [STAND for Android](http://stand.spree.de)
