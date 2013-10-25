@@ -13,6 +13,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.MapFragment;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.unittestcloud.R;
@@ -21,6 +22,7 @@ import com.unittestcloud.youconfapp_app.listener.DefaultMarkerOnClickListener;
 import com.unittestcloud.youconfapp_app.listener.MapListener;
 import com.unittestcloud.youconfapp_app.listener.MarkerOptionsRequestListener;
 import com.unittestcloud.youconfapp_app.listener.NegativeMapActivityOnClickListener;
+import com.unittestcloud.youconfapp_app.ormlite.helper.DatabaseHelper;
 import com.unittestcloud.youconfapp_app.receiver.MarkerOptionsReceiver;
 import com.unittestcloud.youconfapp_app.request.MarkerOptionsJsonRequest;
 import com.unittestcloud.youconfapp_app.service.LoadDefaultMarkersSpiceService;
@@ -60,6 +62,8 @@ public class MapActivity extends SherlockActivity implements
 	protected SpiceManager spiceManager = new SpiceManager(
 			LoadDefaultMarkersSpiceService.class);
 
+	private DatabaseHelper ormHelper = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -129,7 +133,23 @@ public class MapActivity extends SherlockActivity implements
 		
 		super.onStop();
 	}
-
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (ormHelper != null) {
+			OpenHelperManager.releaseHelper();
+			ormHelper = null;
+		}
+	}
+	
+	public DatabaseHelper getHelper() {
+		if (ormHelper == null) {
+			ormHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
+		}
+		return ormHelper;
+	}
+	
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
@@ -166,7 +186,7 @@ public class MapActivity extends SherlockActivity implements
 	 */
 	@Override
 	public void loadMarkerOptions() {
-		spiceManager.execute(new MarkerOptionsJsonRequest(), JSON_CACHE_KEY,
+		spiceManager.execute(new MarkerOptionsJsonRequest("http://xyz"), JSON_CACHE_KEY,
 				DurationInMillis.ALWAYS_EXPIRED, markerOptionsListener);
 	}
 

@@ -31,13 +31,13 @@ public class MainActivity extends SherlockActivity {
 	@SuppressWarnings("unused")
 	private static final String TAG = "youconfapp_app.MainActivity";
 
-	private DatabaseHelper ormHelper = null;
-
 	private static final String JSON_CACHE_KEY = "datakey_json";
 
 	protected SpiceManager spiceManager = new SpiceManager(
 			LoadDefaultMarkersSpiceService.class);
 
+	private DatabaseHelper ormHelper = null;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

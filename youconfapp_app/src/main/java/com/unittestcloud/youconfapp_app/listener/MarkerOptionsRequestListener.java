@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.unittestcloud.R;
-import com.unittestcloud.youconfapp_app.model.MarkerOptionsDao;
+import com.unittestcloud.youconfapp_app.model.MarkerOptionsDataModel;
 import com.unittestcloud.youconfapp_utils.map.CustomizableMap;
 
 import de.akquinet.android.androlog.Log;
@@ -23,7 +23,7 @@ import de.akquinet.android.androlog.Log;
  * 
  */
 public class MarkerOptionsRequestListener implements
-		RequestListener<MarkerOptionsDao> {
+		RequestListener<MarkerOptionsDataModel> {
 
 	private static final String TAG = "youconfapp_app.listener.MarkerOptionsRequestListener";
 
@@ -61,7 +61,7 @@ public class MarkerOptionsRequestListener implements
 	}
 
 	@Override
-	public void onRequestSuccess(MarkerOptionsDao result) {
+	public void onRequestSuccess(MarkerOptionsDataModel result) {
 		list = result.getMarkerOptions();
 
 		if (null != list) {

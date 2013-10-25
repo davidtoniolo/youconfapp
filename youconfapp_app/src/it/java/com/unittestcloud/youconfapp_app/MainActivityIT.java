@@ -1,12 +1,10 @@
 package com.unittestcloud.youconfapp_app;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,9 +15,11 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
+import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.LargeTest;
+
+import com.google.mockwebserver.MockWebServer;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
-import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.table.TableUtils;
 import com.unittestcloud.R;
 import com.unittestcloud.youconfapp_app.ormlite.entity.AppVersion;
@@ -30,10 +30,13 @@ import com.unittestcloud.youconfapp_app.ormlite.helper.DatabaseConfigUtil;
  * @author davidtoniolo
  * 
  */
+@LargeTest
 @RunWith(RobolectricTestRunner.class)
-public class MainActivityIT {
+public class MainActivityIT extends AndroidTestCase {
 
 	private MainActivity activity;
+
+	private MockWebServer mockWebServer;
 
 	/**
 	 * Assert OrmLite updates the db schema with latest entity classes.
@@ -62,16 +65,18 @@ public class MainActivityIT {
 		} catch (RuntimeException e) {
 		}
 
+		mockWebServer = new MockWebServer();
 	}
 
 	@After
-	public void tearDown() {
+	public void tearDown() throws IOException {
 		try {
 			TableUtils.clearTable(activity.getHelper().getConnectionSource(),
 					AppVersion.class);
 		} catch (SQLException e) {
 		}
 		activity.getHelper().getConnectionSource().closeQuietly();
+		mockWebServer.shutdown();
 	}
 
 	@Test

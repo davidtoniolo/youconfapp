@@ -86,8 +86,10 @@ Testing & Continuous Integration
 
 [Travis CI](https://travis-ci.org/davidtoniolo/youconfapp) is watching youconf!app.
 
-[JUnit](http://junit.org), [mockito](https://code.google.com/p/mockito)
-, [PowerMock](http://code.google.com/p/powermock) 
+[JUnit](http://junit.org)
+, [mockito](https://code.google.com/p/mockito)
+, [PowerMock](http://code.google.com/p/powermock)
+, [mockwebserver](https://code.google.com/p/mockwebserver)
 , [Robolectric](https://github.com/robolectric/robolectric)
 & [Cobertura](http://cobertura.github.io/cobertura) are used for unit and integration testing.
 
@@ -140,4 +142,5 @@ This project uses the following great libraries:
 [ActionBarSherlock](https://github.com/JakeWharton/ActionBarSherlock)
 [SQLite](http://www.sqlite.org)
 [OrmLite](http://ormlite.com)
+[Jackson](http://jackson.codehaus.org)
 [RoboSpice](https://github.com/octo-online/robospice)
