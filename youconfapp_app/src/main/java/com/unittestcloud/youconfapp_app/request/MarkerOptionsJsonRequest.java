@@ -2,6 +2,7 @@ package com.unittestcloud.youconfapp_app.request;
 
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.CharEncoding;
@@ -36,12 +37,8 @@ public class MarkerOptionsJsonRequest extends
 
 	@Override
 	public MarkerOptionsDataModel loadDataFromNetwork() throws Exception {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-		}
-
 		// TODO load data from webservice (this.url) using getRestTemplate()...
+
 		String jsonBody = IOUtils.toString(new InputStreamReader(new URL(url)
 				.openStream(), CharEncoding.UTF_8));
 
@@ -53,23 +50,28 @@ public class MarkerOptionsJsonRequest extends
 
 		// build object from json
 		ObjectMapper mapper = new ObjectMapper();
-		MarkerOptionsInfo entity = mapper.readValue(jsonBody,
-				MarkerOptionsInfo.class);
+		List<MarkerOptionsInfo> entities = mapper.readValue(
+				jsonBody,
+				mapper.getTypeFactory().constructCollectionType(List.class,
+						MarkerOptionsInfo.class));
 
-		MarkerOptions option = new MarkerOptions()
-				.position(
-						new LatLng(entity.getLatitude(), entity.getLongitude()))
-				.title(entity.getTitle()).snippet(entity.getDescription());
+		for (MarkerOptionsInfo entity : entities) {
+			MarkerOptions option = new MarkerOptions()
+					.position(
+							new LatLng(entity.getLatitude(), entity
+									.getLongitude())).title(entity.getTitle())
+					.snippet(entity.getDescription());
 
-		int iconResourceId = MarkerOptionsDataModel
-				.loadResourceIdByIconType(entity.getIconType());
+			int iconResourceId = MarkerOptionsDataModel
+					.loadResourceIdByIconType(entity.getIconType());
 
-		if (0 != iconResourceId) {
-			option.icon(BitmapDescriptorFactory.fromResource(iconResourceId));
+			if (0 != iconResourceId) {
+				option.icon(BitmapDescriptorFactory
+						.fromResource(iconResourceId));
+			}
+
+			model.addOption(option);
 		}
-
-		model.addOption(option);
-
 		return model;
 	}
 

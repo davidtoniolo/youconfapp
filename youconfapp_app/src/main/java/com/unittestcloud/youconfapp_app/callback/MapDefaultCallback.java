@@ -80,7 +80,7 @@ public class MapDefaultCallback implements
 							if (null != markerMyLocation) {
 								markerMyLocation.remove();
 							}
-
+/*
 							markerMyLocation = map
 									.addMarker(new MarkerOptions()
 											.position(
@@ -93,7 +93,7 @@ public class MapDefaultCallback implements
 													.getString(R.string.yourPositionMarkerTitle))
 											.icon(BitmapDescriptorFactory
 													.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-
+*/
 							/*
 							 * Center position in google maps.
 							 */
@@ -103,7 +103,7 @@ public class MapDefaultCallback implements
 													.getLatitude(),
 													currentLocation
 															.getLongitude()),
-											15.0f));
+											12.0f));
 						}
 					}
 

@@ -65,6 +65,7 @@ public class MarkerOptionsRequestListener implements
 		list = result.getMarkerOptions();
 
 		if (null != list) {
+			customMap.getCustomMap().clear();
 			customMap.addMarkers(list);
 			mapDataAlreadyLoaded = true;
 		}

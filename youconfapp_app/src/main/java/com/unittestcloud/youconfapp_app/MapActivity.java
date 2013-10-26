@@ -59,6 +59,12 @@ public class MapActivity extends SherlockActivity implements
 
 	private static final String JSON_CACHE_KEY = "markeroptions_json";
 
+	/**
+	 * TODO set real ws url
+	 * TODO integrate a test and production mode
+	 */
+	private static final String WS_MARKEROPTIONS = "http://davidtoniolo.bplaced.net/live access/json/markerinfo";
+
 	protected SpiceManager spiceManager = new SpiceManager(
 			LoadDefaultMarkersSpiceService.class);
 
@@ -107,6 +113,7 @@ public class MapActivity extends SherlockActivity implements
 		super.onResume();
 
 		if (markerOptionsListener.isDataAlreadyLoaded()) {
+			customMap.getCustomMap().clear();
 			customMap.addMarkers(markerOptionsListener.getMarkerOptions());
 		} else {
 			loadMarkerOptions();
@@ -186,7 +193,7 @@ public class MapActivity extends SherlockActivity implements
 	 */
 	@Override
 	public void loadMarkerOptions() {
-		spiceManager.execute(new MarkerOptionsJsonRequest("http://xyz"), JSON_CACHE_KEY,
+		spiceManager.execute(new MarkerOptionsJsonRequest(WS_MARKEROPTIONS), JSON_CACHE_KEY,
 				DurationInMillis.ALWAYS_EXPIRED, markerOptionsListener);
 	}
 

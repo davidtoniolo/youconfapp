@@ -62,7 +62,7 @@ public class MapActivityIT extends AndroidTestCase {
 		// TODO load json from text file
 
 		// given
-		String expected = "{\"title\":\"Botnang (Stuttgart)\",\"description\":\"some text\", \"longitude\":9.158800, \"latitude\":48.811300}";
+		String expected = "{\"title\":\"Feuerbach (Stuttgart)\",\"description\":\"some text\", \"longitude\":9.158800, \"latitude\":48.811300}";
 		mockWebServer.enqueue(new MockResponse().setBody(expected));
 		mockWebServer.play();
 
@@ -76,7 +76,7 @@ public class MapActivityIT extends AndroidTestCase {
 		assertEquals(1, list.size());
 
 		MarkerOptions option = list.get(0);
-		assertEquals("Botnang (Stuttgart)", option.getTitle());
+		assertEquals("Feuerbach (Stuttgart)", option.getTitle());
 		assertEquals("some text", option.getSnippet());
 	}
 
