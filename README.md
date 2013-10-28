@@ -8,6 +8,8 @@ Travis CI build status (latest): [![Build Status](https://travis-ci.org/davidton
 
 Author: David Toniolo <youconfapp@unittestcloud.com>
 
+Partner projects: [youconfweb](https://github.com/davidtoniolo/youconfweb) & [youconfws](https://github.com/davidtoniolo/youconfws)
+
 
 /google_play_services_lib
 =========================
