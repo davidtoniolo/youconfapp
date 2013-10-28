@@ -62,7 +62,7 @@ public class MapActivityIT extends AndroidTestCase {
 		// TODO load json from text file
 
 		// given
-		String expected = "{\"title\":\"Feuerbach (Stuttgart)\",\"description\":\"some text\", \"longitude\":9.158800, \"latitude\":48.811300}";
+		String expected = "[{\"title\":\"Feuerbach (Stuttgart)\",\"description\":\"some text\", \"longitude\":9.158800, \"latitude\":48.811300}]";
 		mockWebServer.enqueue(new MockResponse().setBody(expected));
 		mockWebServer.play();
 
